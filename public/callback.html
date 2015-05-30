@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+    (function() {
+      var hash = {};
+      window.location.hash.replace(/^#\/?/, '').split('&').forEach(function(kv) {
+        var spl = kv.indexOf('=');
+        if (spl != -1) {
+          hash[kv.substring(0, spl)] = decodeURIComponent(kv.substring(spl+1));
+        }
+      });
+      console.log('initial hash', hash);
+      if (hash.access_token) {
+        var message = JSON.stringify({
+          type:'access_token',
+          access_token: hash.access_token,
+          expires_in: hash.expires_in || 0
+        });
+        var url = "*"; //window.location.host
+        window.opener.postMessage(message, url);
+        window.close();
+      }
+    })();
+  </script>
+</head>
+<body>
+  Callback
+</body>
+</html>
