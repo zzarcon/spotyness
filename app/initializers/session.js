@@ -67,17 +67,25 @@ var Session = Ember.Object.extend({
 
   setPreviousToken: function() {
     var token = localStorage.getItem(this.get('storageKey'));
-    if (!token) return;
 
-    this.setToken(token);
-    this.getMe();
-  }.on('init')
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      if (!token) {
+        resolve();
+        return;
+      }
+
+      this.setToken(token);
+      this.getMe().then(resolve);
+    }.bind(this));
+  }
 });
 
 export function initialize(container, app) {
-  app.register('session:main', Session, {
-    singleton: true
-  });
+  app.register('session:main', Session, {singleton: true});
+  var session = container.lookup('session:main');
+
+  app.deferReadiness();
+  session.setPreviousToken().then(app.advanceReadiness.bind(app));
 
   app.inject('controller', 'session', 'session:main');
   app.inject('route', 'session', 'session:main');
