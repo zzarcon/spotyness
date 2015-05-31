@@ -1,3 +1,7 @@
-<button {{action "login"}}>Login</button>
+{{#if session.isLogged}}
+  {{session.user.display_name}}
+{{else}}
+  <button {{action "login"}}>Login</button>
+{{/if}}
 
 {{outlet}}

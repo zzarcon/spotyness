@@ -2,6 +2,9 @@
 
 module.exports = function(environment) {
   var ENV = {
+    clientId: '8678c3aa274246d0a4fd5f7d213dc866',
+    redirectUri: 'http://localhost:4200/callback.html',
+    apiHost: 'https://api.spotify.com/v1',
     modulePrefix: 'spotyness',
     environment: environment,
     baseURL: '/',
