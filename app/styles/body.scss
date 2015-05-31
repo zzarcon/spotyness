@@ -1,0 +1,16 @@
+#app-content{
+  @include flexbox;
+  @include flex(1);
+
+  .sidebar-left{
+    width: 10rem;
+    border-right: 1px solid;
+  }
+  .sidebar-right{
+    width: 10rem;
+    border-left: 1px solid;
+  }
+  .content{
+    @include flex(1);
+  }
+}

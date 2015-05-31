@@ -62,6 +62,8 @@ var Session = Ember.Object.extend({
       url: `${env.apiHost}/me`
     }).then(function(response) {
       this.set('user', response);
+      //TODO: Remove this
+      this.set('user.img', response.images[0].url);
     }.bind(this));
   },
 

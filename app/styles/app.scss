@@ -1,0 +1,25 @@
+@import "bower_components/sass-flex-mixin/flex";
+
+@import "header";
+@import "body";
+@import "footer";
+
+*{
+  box-sizing: border-box;
+}
+html, body{
+  margin: 0;
+  padding: 0;
+}
+html, body, #spotyness{
+  height: 100%;
+}
+
+body{
+  overflow: hidden;
+}
+
+#spotyness{
+  @include flexbox;
+  @include flex-direction(column);
+}
