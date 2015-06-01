@@ -2,15 +2,23 @@
   @include flexbox;
   @include flex(1);
 
-  .sidebar-left{
+  .sidebar-left, .sidebar-right{
     width: 10rem;
+    overflow: auto;
+  }
+  .sidebar-left{
     border-right: 1px solid;
   }
   .sidebar-right{
-    width: 10rem;
     border-left: 1px solid;
   }
   .content{
     @include flex(1);
+  }
+  .playlist{
+    li:hover{
+      cursor: pointer;
+      background-color: #ccc;
+    }
   }
 }

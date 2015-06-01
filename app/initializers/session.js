@@ -93,6 +93,7 @@ export function initialize(container, app) {
   app.inject('route', 'session', 'session:main');
   app.inject('router', 'session', 'session:main');
   app.inject('view', 'session', 'session:main');
+  app.inject('model', 'session', 'session:main');
 }
 
 export default {

@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import DS from "ember-data";
 import Resolver from 'ember/resolver';
 import loadInitializers from 'ember/load-initializers';
 import config from './config/environment';
@@ -10,6 +11,10 @@ Ember.LOG_VERSIONS = false;
 App = Ember.Application.extend({
   modulePrefix: config.modulePrefix,
   Resolver: Resolver
+});
+
+DS.RESTAdapter.reopen({
+  host: config.apiHost
 });
 
 loadInitializers(App, config.modulePrefix);
