@@ -6,5 +6,5 @@ export default DS.RESTSerializer.extend({
       playlists: payload.items
     };
     return this._super(store, type, payload);
-  },
+  }
 });

@@ -14,6 +14,7 @@
   }
   .content{
     @include flex(1);
+    overflow: auto;
   }
   .playlist{
     li:hover{

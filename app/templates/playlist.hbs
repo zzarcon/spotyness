@@ -1,2 +1,8 @@
-Playlist {{model.id}}
+Playlist {{model.name}}
+
+<ul>
+  {{#each track in tracks}}
+    <li>{{track.name}}</li>
+  {{/each}}
+</ul>
 {{outlet}}
