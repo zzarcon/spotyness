@@ -32,9 +32,9 @@
       function startApp() {
         console.log('startApp');
         gapi.load('auth2', function() {
-          gapi.client.load('plus','v1').then(function() {
+          gapi.client.load('youtube', 'v3').then(function() {
             gapi.signin2.render('signin-button', {scope: 'https://www.googleapis.com/auth/plus.login', fetch_basic_profile: false });
-            gapi.auth2.init({fetch_basic_profile: false, scope:'https://www.googleapis.com/auth/plus.login'}).then(function (){
+            gapi.auth2.init({fetch_basic_profile: false, scope:'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/youtube'}).then(function (){
               console.log('init');
               auth2 = gapi.auth2.getAuthInstance();
               auth2.isSignedIn.listen(updateSignIn);
@@ -56,18 +56,18 @@
 
       function onSignInCallback(authResult) {
         if (authResult.isSignedIn.get()) {
-          gapi.client.plus.people.get({'userId': 'me'}).then(function(res) {
-            console.log('me', res.result);
+          var request = gapi.client.youtube.search.list({
+            q: "melody day",
+            part: 'snippet',
+            type: 'video',
+            maxResults: 1,
+            order: 'viewCount' //rating, relevance
+          });
+
+          request.execute(function(response) {
+            console.log('videos: ', response);
           });
         }
-      }
-
-      function checkAuth() {
-        gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, handleAuthResult);
-      }
-
-      function handleAuthResult(authResult) {
-        debugger;
       }
 
       function makeApiCall() {
