@@ -5,6 +5,13 @@
         {{#link-to "playlist" playlist.id tagName="li"}}{{playlist.name}}{{/link-to}}
       {{/each}}
     </ul>
+    <div class="current-video">
+      {{#if currentVideo.id}}
+        {{ember-youtube ytid=currentVideo.id autoplay=true showControls=false showTime=false showProgress=false}}
+      {{else}}
+        No video
+      {{/if}}
+    </div>
   </div>
   <div class="content">
     {{outlet}}

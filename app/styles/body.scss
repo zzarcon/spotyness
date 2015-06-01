@@ -4,22 +4,38 @@
 
   .sidebar-left, .sidebar-right{
     width: 10rem;
-    overflow: auto;
   }
   .sidebar-left{
+    @include flexbox;
+    @include flex-direction(column);
     border-right: 1px solid;
+
+    .playlist{
+      @include flex(1);
+      margin: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      li:hover{
+        cursor: pointer;
+        background-color: #ccc;
+      }
+    }
+    .current-video{
+      overflow: hidden;
+      height: 10rem;
+
+      iframe{
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
   .sidebar-right{
+    overflow: auto;
     border-left: 1px solid;
   }
   .content{
     @include flex(1);
     overflow: auto;
-  }
-  .playlist{
-    li:hover{
-      cursor: pointer;
-      background-color: #ccc;
-    }
   }
 }
