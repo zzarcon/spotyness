@@ -1,8 +1,8 @@
 Playlist {{model.name}}
 
-<ul>
+<ul class="tracks">
   {{#each track in tracks}}
-    <li>{{track.name}}</li>
+    <li {{action "play" track}}>{{track.name}}</li>
   {{/each}}
 </ul>
 {{outlet}}

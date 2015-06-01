@@ -11,10 +11,17 @@ export default Ember.Route.extend({
     return this.get('store').find('playlist', params.playlist_id);
   },
 
-  setupController: function(controller, model) {
-    var tracks = this.get('store').all('track').filterBy('playlistId', '2yE3vx0pBnyqXA594yXG0D');
+  setupController: function(controller, model, transition) {
+    var playlistId = transition.params.playlist.playlist_id;
+    var tracks = this.get('store').all('track').filterBy('playlistId', playlistId);
 
     controller.set('content', model);
     controller.set('tracks', tracks);
+  },
+
+  actions: {
+    play: function(track) {
+      debugger;
+    }
   }
 });
