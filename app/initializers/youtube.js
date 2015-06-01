@@ -22,7 +22,7 @@ var Youtube = Ember.Object.extend({
 function onGoogleApiLoad() {
   gapi.load('auth2', function() {
     gapi.client.load('youtube', 'v3').then(function() {
-      gapi.signin2.render('signin-button', {scope: 'https://www.googleapis.com/auth/plus.login', fetch_basic_profile: false});
+      // gapi.signin2.render('signin-button', {scope: 'https://www.googleapis.com/auth/plus.login', fetch_basic_profile: false});
       gapi.auth2.init({fetch_basic_profile: false, scope: scopes});
     });
   });

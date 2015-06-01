@@ -17,11 +17,5 @@ export default Ember.Route.extend({
 
     controller.set('content', model);
     controller.set('tracks', tracks);
-  },
-
-  actions: {
-    play: function(track) {
-      debugger;
-    }
   }
 });
