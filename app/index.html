@@ -11,7 +11,8 @@
 
     <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/spotyness.css">
-
+    <script src="https://apis.google.com/js/client:platform.js?onload=startApp" async defer></script>
+    <meta name="google-signin-client_id" content="367630744651-67gbiseqnjecb6flclm2g2p7i9vicip6.apps.googleusercontent.com"></meta>
     {{content-for 'head-footer'}}
   </head>
   <body>
@@ -21,5 +22,59 @@
     <script src="assets/spotyness.js"></script>
 
     {{content-for 'body-footer'}}
+
+    <div id="signin-button"></div>
+    <script>
+      var clientId = 'spotyness';
+      var apiKey = 'AIzaSyC74lOQXYUVEZNkVkdh_XThJmV0pQbiwVw';
+      var scopes = 'https://www.googleapis.com/auth/youtube';
+
+      function startApp() {
+        console.log('startApp');
+        gapi.load('auth2', function() {
+          gapi.client.load('plus','v1').then(function() {
+            gapi.signin2.render('signin-button', {scope: 'https://www.googleapis.com/auth/plus.login', fetch_basic_profile: false });
+            gapi.auth2.init({fetch_basic_profile: false, scope:'https://www.googleapis.com/auth/plus.login'}).then(function (){
+              console.log('init');
+              auth2 = gapi.auth2.getAuthInstance();
+              auth2.isSignedIn.listen(updateSignIn);
+              auth2.then(updateSignIn());
+            });
+          });
+        });
+      }
+      var updateSignIn = function() {
+        console.log('update sign in state');
+        if (auth2.isSignedIn.get()) {
+          console.log('signed in');
+          onSignInCallback(gapi.auth2.getAuthInstance());
+        }else{
+          console.log('signed out');
+          onSignInCallback(gapi.auth2.getAuthInstance());
+        }
+      }
+
+      function onSignInCallback(authResult) {
+        if (authResult.isSignedIn.get()) {
+          gapi.client.plus.people.get({'userId': 'me'}).then(function(res) {
+            console.log('me', res.result);
+          });
+        }
+      }
+
+      function checkAuth() {
+        gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, handleAuthResult);
+      }
+
+      function handleAuthResult(authResult) {
+        debugger;
+      }
+
+      function makeApiCall() {
+        gapi.client.load('youtube', 'v1').then(function() {
+          debugger;
+        });
+      }
+    </script>
   </body>
 </html>
