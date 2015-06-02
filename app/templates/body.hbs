@@ -7,7 +7,7 @@
     </ul>
     <div class="current-video">
       {{#if currentVideo.id}}
-        {{ember-youtube ytid=currentVideo.id autoplay=true showControls=false showTime=false showProgress=false}}
+        {{ember-youtube ytid=currentVideo.id autoplay=true showControls=false showTime=false showProgress=false delegate=controller delegate-as="videoPlayer" buffering="onBuffer" ended="onEnd"}}
       {{else}}
         No video
       {{/if}}

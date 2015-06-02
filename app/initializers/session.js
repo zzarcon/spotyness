@@ -28,7 +28,7 @@ var Session = Ember.Object.extend({
 
       this.setToken(hash.access_token);
       this.getMe();
-      callback(hash.access_token);
+      callback && callback(hash.access_token);
     }.bind(this), false);
 
     window.open(url,
@@ -58,13 +58,17 @@ var Session = Ember.Object.extend({
   },
 
   getMe: function() {
-    return $.ajax({
-      url: `${env.apiHost}/me`
-    }).then(function(response) {
+    var request = Em.$.get(`${env.apiHost}/me`);
+
+    request.then(function(response) {
       this.set('user', response);
       //TODO: Remove this
       this.set('user.img', response.images[0].url);
     }.bind(this));
+
+    request.error(this.login);
+    
+    return request;
   },
 
   setPreviousToken: function() {

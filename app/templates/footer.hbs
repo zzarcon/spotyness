@@ -1,3 +1,10 @@
 <footer id="app-footer">
-  {{currentVideo.id}}
+  <button {{action "togglePlay" target=videoPlayer}}>
+    {{#if videoPlayer.isPlaying}}Pause{{else}}Play{{/if}}
+  </button>
+  <button {{action "toggleVolume" target=videoPlayer}}>
+      {{#if videoPlayer.isMuted}}Unmute{{else}}Mute{{/if}}
+  </button>
+
+  <div>{{videoPlayer.currentTimeFormatted}} - {{videoPlayer.durationFormatted}}</div>
 </footer>
