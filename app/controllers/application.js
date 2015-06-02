@@ -1,13 +1,18 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  needs: ['playlists'],
+  needs: ['playlists', 'playlist'],
   currentTrack: null,
   currentVideo: null,
   videoPlayer: null,
-  
+
   play: function(track) {
+    var currentTrack = this.get('currentTrack');
+    currentTrack && currentTrack.set('isActive', false);
+
+    track.set('isActive', true);
     this.set('currentTrack', track);
+    
     this.get('youtube').search(track.get('name')).then(function(response) {
       var firstItem = response.items[0];
       var video = {

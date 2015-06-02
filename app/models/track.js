@@ -9,5 +9,7 @@ export default DS.Model.extend({
   name: attr('string'),
   album: attr(),
   artists: attr(),
-  popularity: attr('number')
+  popularity: attr('number'),
+
+  isActive: false
 });

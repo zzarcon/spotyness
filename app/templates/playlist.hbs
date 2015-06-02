@@ -2,7 +2,7 @@ Playlist {{model.name}}
 
 <ul class="tracks">
   {{#each track in tracks}}
-    <li {{action "play" track}}>{{track.name}}</li>
+    <li {{action "play" track}} class={{if track.isActive "is-active"}}>{{track.name}}</li>
   {{/each}}
 </ul>
 {{outlet}}

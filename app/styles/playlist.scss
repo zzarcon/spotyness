@@ -1,8 +1,10 @@
 #playlist{
   .tracks{
-    li:hover{
+    li{
       cursor: pointer;
-      background-color: #ccc;
+      &:hover, &.is-active{
+        background-color: #ccc;
+      }
     }
   }
 }

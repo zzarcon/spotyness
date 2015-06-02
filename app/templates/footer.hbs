@@ -5,6 +5,7 @@
   <button {{action "toggleVolume" target=videoPlayer}}>
       {{#if videoPlayer.isMuted}}Unmute{{else}}Mute{{/if}}
   </button>
-
+  <button {{action "playPrev" target=controllers.playlist}}>Prev</button>
+  <button {{action "playNext" target=controllers.playlist}}>Next</button>
   <div>{{videoPlayer.currentTimeFormatted}} - {{videoPlayer.durationFormatted}}</div>
 </footer>
