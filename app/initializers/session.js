@@ -82,7 +82,10 @@ var Session = Ember.Object.extend({
       }
 
       this.setToken(token);
-      this.getMe().then(resolve);
+      
+      var me = this.getMe();
+      me.then(resolve);
+      me.error(resolve);
     }.bind(this));
   }
 });

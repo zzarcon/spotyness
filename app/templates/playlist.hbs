@@ -1,6 +1,10 @@
 Playlist {{model.name}}
 
 <ul class="tracks">
+  {{#unless tracks.length}}
+    No tracks...
+  {{/unless}}
+
   {{#each track in tracks}}
     <li {{action "play" track}} class={{if track.isActive "is-active"}}>{{track.name}}</li>
   {{/each}}

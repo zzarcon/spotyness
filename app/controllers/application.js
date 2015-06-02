@@ -34,23 +34,33 @@ export default Ember.Controller.extend({
     }
   }),
 
+  //Watch "videoPlayer.playerState" because "getVolume" isn't always available
+  initialVolume: Ember.computed('videoPlayer.playerState', {
+    get() {
+      var player = this.get('videoPlayer.player');
+      if (!player || !player.getVolume) return 0;
+
+      return player.getVolume();
+    }
+  }),
+
   actions: {
     login: function() {
       this.get('session').login();
     },
 
-    onBuffer: function() {
-      console.log('onBuffer');
-    },
-
     onEnd: function() {
-      this.get('activePlaylist').send('playNext');
+      this.get('activePlaylist').send('navigate', 'next');
     },
 
     seekTo: function() {
       var el = document.getElementById("video-slider");
-      
       this.get('videoPlayer').send('seekTo', el.value);
+    },
+
+    changeVolume: function() {
+      var el = document.getElementById("video-volume");
+      this.get('videoPlayer.player').setVolume(el.value);
     }
   }
 });

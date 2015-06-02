@@ -5,10 +5,13 @@
   <button {{action "toggleVolume" target=videoPlayer}}>
       {{#if videoPlayer.isMuted}}Unmute{{else}}Mute{{/if}}
   </button>
-  <button {{action "playPrev" target=activePlaylist}}>Prev</button>
-  <button {{action "playNext" target=activePlaylist}}>Next</button>
-
-  {{videoPlayer.currentTimeFormatted}}
-  <input id="video-slider" type="range" min="0" max={{videoPlayer.durationValue}} value={{videoPlayer.currentTimeValue}} {{action "seekTo"}}>
-  {{videoPlayer.durationFormatted}}
+  <button {{action "navigate" "prev" target=activePlaylist}}>Prev</button>
+  <button {{action "navigate" "next" target=activePlaylist}}>Next</button>
+  
+  <div class="timeline">
+    {{videoPlayer.currentTimeFormatted}}
+    <input id="video-slider" type="range" min="0" max={{videoPlayer.durationValue}} value={{videoPlayer.currentTimeValue}} {{action "seekTo"}}>
+    {{videoPlayer.durationFormatted}}
+  </div>
+  <input id="video-volume" type="range" min="0" max="100" value={{initialVolume}} {{action "changeVolume"}}>
 </footer>
