@@ -26,6 +26,14 @@ export default Ember.Controller.extend({
     }.bind(this));
   },
 
+  videoPercentage: Ember.computed('videoPlayer.currentTimeValue', 'videoPlayer.durationValue', {
+    get: function() {
+      if (!this.get('videoPlayer.currentTimeValue')) return 0;
+
+      return parseInt((this.get('videoPlayer.currentTimeValue') * 100) / this.get('videoPlayer.durationValue'), 10);
+    }
+  }),
+
   actions: {
     login: function() {
       this.get('session').login();
@@ -39,8 +47,10 @@ export default Ember.Controller.extend({
       this.get('activePlaylist').send('playNext');
     },
 
-    seekTo: function(value) {
-      this.get('videoPlayer').send('seekTo', value);
+    seekTo: function() {
+      var el = document.getElementById("video-slider");
+      
+      this.get('videoPlayer').send('seekTo', el.value);
     }
   }
 });

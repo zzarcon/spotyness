@@ -7,5 +7,8 @@
   </button>
   <button {{action "playPrev" target=activePlaylist}}>Prev</button>
   <button {{action "playNext" target=activePlaylist}}>Next</button>
-  <div>{{videoPlayer.currentTimeFormatted}} - {{videoPlayer.durationFormatted}}</div>
+
+  {{videoPlayer.currentTimeFormatted}}
+  <input id="video-slider" type="range" min="0" max={{videoPlayer.durationValue}} value={{videoPlayer.currentTimeValue}} {{action "seekTo"}}>
+  {{videoPlayer.durationFormatted}}
 </footer>
