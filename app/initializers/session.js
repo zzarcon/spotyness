@@ -28,7 +28,8 @@ var Session = Ember.Object.extend({
 
       this.setToken(hash.access_token);
       this.getMe();
-      callback && callback(hash.access_token);
+      
+      Ember.typeOf(callback) === "function" && callback(hash.access_token);
     }.bind(this), false);
 
     window.open(url,
@@ -66,8 +67,8 @@ var Session = Ember.Object.extend({
       this.set('user.img', response.images[0].url);
     }.bind(this));
 
-    request.error(this.login);
-    
+    request.error(this.login.bind(this));
+
     return request;
   },
 
