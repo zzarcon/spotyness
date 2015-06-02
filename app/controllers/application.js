@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
   currentTrack: null,
   currentVideo: null,
   videoPlayer: null,
+  activePlaylist: Ember.computed.alias('controllers.playlist'),
 
   play: function(track) {
     var currentTrack = this.get('currentTrack');
@@ -12,7 +13,7 @@ export default Ember.Controller.extend({
 
     track.set('isActive', true);
     this.set('currentTrack', track);
-    
+
     this.get('youtube').search(track.get('name')).then(function(response) {
       var firstItem = response.items[0];
       var video = {
@@ -27,9 +28,7 @@ export default Ember.Controller.extend({
 
   actions: {
     login: function() {
-      this.get('session').login(function() {
-        console.log('login!');
-      });
+      this.get('session').login();
     },
 
     onBuffer: function() {
@@ -37,7 +36,7 @@ export default Ember.Controller.extend({
     },
 
     onEnd: function() {
-      console.log('onEnd')
+      this.get('activePlaylist').send('playNext');
     },
 
     seekTo: function(value) {
