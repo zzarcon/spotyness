@@ -8,14 +8,18 @@ export default Ember.Controller.extend({
   activePlaylist: Ember.computed.alias('controllers.playlist'),
 
   play: function(track) {
+    var query = track.getWithDefault('artists.firstObject.name', '') + ' ' + track.get('name');
     var currentTrack = this.get('currentTrack');
-    currentTrack && currentTrack.set('isActive', false);
 
+    currentTrack && currentTrack.set('isActive', false);
     track.set('isActive', true);
     this.set('currentTrack', track);
 
-    this.get('youtube').search(track.get('name')).then(function(response) {
-      var firstItem = response.items[0];
+    this.get('youtube').search(query).then(function(response) {
+      var firstItem = response.items ? response.items[0] : null;
+      //TODO: If no firstItem show error message and go to the next one
+      if (!firstItem) return;
+
       var video = {
         id: firstItem.id.videoId,
         description: firstItem.snippet.description,
