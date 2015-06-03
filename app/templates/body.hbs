@@ -1,7 +1,7 @@
 <div id="app-content">
   <div class="sidebar-left">
     <ul class="playlist">
-      {{#each playlist in controllers.playlists.mine}}
+      {{#each playlist in myPlaylists}}
         {{#link-to "playlist" playlist.id tagName="li"}}{{playlist.name}}{{/link-to}}
       {{/each}}
     </ul>

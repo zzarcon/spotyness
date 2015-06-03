@@ -6,6 +6,7 @@ export default Ember.Controller.extend({
   currentVideo: null,
   videoPlayer: null,
   activePlaylist: Ember.computed.alias('controllers.playlist'),
+  myPlaylists: Ember.computed.alias('controllers.playlists.mine'),
 
   play: function(track) {
     var query = track.getWithDefault('artists.firstObject.name', '') + ' ' + track.get('name');
