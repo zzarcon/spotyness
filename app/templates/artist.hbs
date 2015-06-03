@@ -1,0 +1,7 @@
+<h1>{{model.name}}</h1>
+<img src={{model.smallImg}}>
+
+{{#each track in model.topTracks}}
+  <div>{{track.name}}</div>
+{{/each}}
+{{outlet}}

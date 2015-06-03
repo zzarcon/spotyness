@@ -2,8 +2,15 @@ import ApplicationAdapter from './application';
 
 export default ApplicationAdapter.extend({
   buildURL: function(type, params) {
-    var id = params.playlist_id;
+    var playlistId = params.playlist_id;
+    var artistId = params.artistId;
 
-    return this.get('host') + '/users/zzarcon/playlists/' + id + '/tracks';
+    if (playlistId) {
+      return this.get('host') + `/users/zzarcon/playlists/${playlistId}/tracks`;
+    }
+
+    if (artistId) {
+      return this.get('host') + `/artists/${artistId}/top-tracks?country=ES`;
+    }
   }
 });

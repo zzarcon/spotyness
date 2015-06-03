@@ -18,7 +18,9 @@
     {{#each track in tracks}}
       <tr {{action "play" track}} class={{if track.isActive "is-active"}}>
         <td>{{track.name}}</td>
-        <td>{{track.mainArtist.name}}</td>
+        {{#link-to "artist" track.mainArtist.id class="artist-name" tagName="td"}}
+          {{track.mainArtist.name}}
+        {{/link-to}}
         <td>{{track.album.name}}</td>
         <td>{{track.addedAgo}}</td>
         <td>{{track.duration}}</td>

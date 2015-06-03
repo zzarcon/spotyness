@@ -10,5 +10,11 @@
         background-color: #ccc;
       }
     }
+    .artist-name{
+      cursor: pointer;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
   }
 }
