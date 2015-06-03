@@ -19,7 +19,10 @@ html, body, #spotyness{
 body{
   overflow: hidden;
 }
-
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
 #spotyness{
   @include flexbox;
   @include flex-direction(column);

@@ -1,12 +1,29 @@
-Playlist {{model.name}}
+<h1>{{model.name}}</h1>
 
-<ul class="tracks">
-  {{#unless tracks.length}}
-    No tracks...
-  {{/unless}}
+{{#unless tracks.length}}
+  No tracks...
+{{/unless}}
 
-  {{#each track in tracks}}
-    <li {{action "play" track}} class={{if track.isActive "is-active"}}>{{track.name}}</li>
-  {{/each}}
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>Song</th>
+      <th>Artist</th>
+      <th>Album</th>
+      <th>Added</th>
+      <th>Duration</th>
+    </tr>
+  </thead>
+  <tbody class="tracks">
+    {{#each track in tracks}}
+      <tr {{action "play" track}} class={{if track.isActive "is-active"}}>
+        <td>{{track.name}}</td>
+        <td>{{track.mainArtist.name}}</td>
+        <td>{{track.album.name}}</td>
+        <td>{{track.addedAgo}}</td>
+        <td>{{track.duration}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
 {{outlet}}

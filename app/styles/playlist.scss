@@ -1,6 +1,10 @@
 #playlist{
+  th, td{
+    padding: 0.5rem;
+    text-align: left;
+  }
   .tracks{
-    li{
+    tr{
       cursor: pointer;
       &:hover, &.is-active{
         background-color: #ccc;
