@@ -10,6 +10,7 @@ export default Ember.Controller.extend({
   searchQuery: "joy divisio",
   searchQueryDelay: null,
   searchResults: [],
+  loadingResults: false,
 
   play: function(track) {
     var query = track.getWithDefault('artists.firstObject.name', '') + ' ' + track.get('name');
@@ -54,12 +55,13 @@ export default Ember.Controller.extend({
 
   onSearch: Ember.observer('searchQuery', function() {
     Ember.run.cancel(this.get('searchQueryDelay'));
-
+    this.set('loadingResults', true);
     this.set('searchQueryDelay', Ember.run.later(this, function() {
       var query = this.get('searchQuery');
       if (!query) return;
 
       this.get('youtube').search(query, 10).then(function(response) {
+        this.set('loadingResults', false);
         this.set('searchResults', response.items.map(function(item) {
           return {
             id: item.id.videoId,
