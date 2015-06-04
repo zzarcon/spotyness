@@ -1,7 +1,14 @@
 #app-header{
   border-bottom: 1px solid;
   height: 3rem;
-
+  
+  .search-results{
+    position: absolute;
+    background-color: white;
+    border: 1px solid;
+    width: 20rem;
+    overflow: hidden;
+  }
   .me{
     float: right;
 

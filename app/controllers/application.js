@@ -7,6 +7,9 @@ export default Ember.Controller.extend({
   videoPlayer: null,
   activePlaylist: Ember.computed.alias('controllers.playlist'),
   myPlaylists: Ember.computed.alias('controllers.playlists.mine'),
+  searchQuery: "joy divisio",
+  searchQueryDelay: null,
+  searchResults: [],
 
   play: function(track) {
     var query = track.getWithDefault('artists.firstObject.name', '') + ' ' + track.get('name');
@@ -47,6 +50,25 @@ export default Ember.Controller.extend({
 
       return player.getVolume();
     }
+  }),
+
+  onSearch: Ember.observer('searchQuery', function() {
+    Ember.run.cancel(this.get('searchQueryDelay'));
+
+    this.set('searchQueryDelay', Ember.run.later(this, function() {
+      var query = this.get('searchQuery');
+      if (!query) return;
+
+      this.get('youtube').search(query, 10).then(function(response) {
+        this.set('searchResults', response.items.map(function(item) {
+          return {
+            id: item.id.videoId,
+            name: item.snippet.title,
+            img: item.snippet.thumbnails.default.url
+          };
+        }));
+      }.bind(this));
+    }, 1000));
   }),
 
   actions: {

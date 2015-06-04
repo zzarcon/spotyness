@@ -4,12 +4,12 @@ var apiKey = 'AIzaSyC74lOQXYUVEZNkVkdh_XThJmV0pQbiwVw';
 var scopes = 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/youtube';
 
 var Youtube = Ember.Object.extend({
-  search: function(query) {
+  search: function(query, maxResults = 1) {
     var request = gapi.client.youtube.search.list({
       q: query,
       part: 'snippet',
       type: 'video',
-      maxResults: 1,
+      maxResults: maxResults,
       order: 'viewCount' //rating, relevance
     });
 
