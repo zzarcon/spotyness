@@ -10,7 +10,9 @@ export default ApplicationAdapter.extend({
     }
 
     if (artistId) {
-      return this.get('host') + `/artists/${artistId}/top-tracks?country=ES`;
+      let country = navigator.language.split('-')[1] || 'US';
+
+      return this.get('host') + `/artists/${artistId}/top-tracks?country=${country}`;
     }
   }
 });
