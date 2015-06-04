@@ -1,6 +1,14 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  titleToken: function(model) {
+    return `Playlist: ${model.get('name')}`;
+  },
+
+  title: function(tokens) {
+    return tokens.join('');
+  },
+
   beforeModel: function(transition) {
     return this.get('store').find('track', {
       playlist_id: transition.params.playlist.playlist_id
