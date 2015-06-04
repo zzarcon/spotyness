@@ -1,13 +1,22 @@
 #app-header{
   border-bottom: 1px solid;
   height: 3rem;
-  
+
   .search-results{
     position: absolute;
     background-color: white;
     border: 1px solid;
     width: 20rem;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: calc(100% - 3rem);
+
+    li{
+      cursor: pointer;
+      &:hover{
+        background-color: #ccc;
+      }
+    }
   }
   .me{
     float: right;

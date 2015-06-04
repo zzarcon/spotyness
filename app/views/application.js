@@ -9,7 +9,9 @@ export default Ember.View.extend({
     var input = this.$('#search-query');
 
     input.on('focusin focusout', function() {
-      this.toggleProperty('isInputFocused');
+      Ember.run.later(this, function() {
+        this.toggleProperty('isInputFocused');
+      }, 10);
     }.bind(this));
   }.on('didInsertElement')
 });

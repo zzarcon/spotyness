@@ -90,6 +90,10 @@ export default Ember.Controller.extend({
     changeVolume: function() {
       var el = document.getElementById("video-volume");
       this.get('videoPlayer.player').setVolume(el.value);
+    },
+
+    setCurrentVideo: function(video) {
+      this.set('currentVideo', video);
     }
   }
 });
