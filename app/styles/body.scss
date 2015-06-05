@@ -1,25 +1,46 @@
 #app-content{
   @include flexbox;
   @include flex(1);
+  background: rgba(0, 0, 0, 0.23);
+  color: #f4f4f4;
+  font-size: 0.8rem;
 
-  .sidebar-left, .sidebar-right{
-    width: 10rem;
+  .sidebar-right{
+    width: 5vw;
+   }
+
+  .sidebar-left{
+    width: 15vw;
   }
+
   .sidebar-left{
     @include flexbox;
     @include flex-direction(column);
-    border-right: 1px solid;
 
     .playlist{
       @include flex(1);
       margin: 0;
+      padding: 0 10px 0 0;
       overflow-y: auto;
       overflow-x: hidden;
+      list-style-type: none;
+      border-right: 1px solid rgba(255,255,255, 0.2);
+
       li{
         cursor: pointer;
-        &:hover, &.active{
-          background-color: #ccc;
-        } 
+        //margin: 10px 0;
+        padding: 10px 0;
+        text-indent: 20px;
+
+        &.active{
+          border-left: 4px solid #5cb85c;
+          background: rgba(0,0,0, 0.3);
+        }
+
+        &:hover{
+          border-left: 4px solid rgba(255,255,255, 0.4 );
+          background: rgba(0,0,0, 0.1);
+        }
       }
     }
     .current-video{
@@ -34,7 +55,6 @@
   }
   .sidebar-right{
     overflow: auto;
-    border-left: 1px solid;
   }
   .content{
     @include flex(1);

@@ -6,7 +6,7 @@ export default ApplicationAdapter.extend({
     var artistId = params.artistId;
 
     if (playlistId) {
-      return this.get('host') + `/users/zzarcon/playlists/${playlistId}/tracks`;
+      return this.get('host') + `/users/liebgott_cat/playlists/${playlistId}/tracks`;
     }
 
     if (artistId) {
