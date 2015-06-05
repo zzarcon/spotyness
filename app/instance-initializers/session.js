@@ -1,6 +1,6 @@
 export function initialize(instance) {
-  var session = instance.container.lookup('session:main');  
-  session.setPreviousToken();
+  // var session = instance.container.lookup('session:main');  
+  // session.setPreviousToken();
 }
 
 export default {
