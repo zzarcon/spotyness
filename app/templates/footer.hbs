@@ -5,8 +5,8 @@
   <button {{action "toggleVolume" target=videoPlayer}}>
       {{#if videoPlayer.isMuted}}Unmute{{else}}Mute{{/if}}
   </button>
-  <button {{action "navigate" "prev" target=activePlaylist}}>Prev</button>
-  <button {{action "navigate" "next" target=activePlaylist}}>Next</button>
+  <button {{action "navigate" "prev" target=activePlaylist}} disabled={{activePlaylist.isFirstTrackActive}}>Prev</button>
+  <button {{action "navigate" "next" target=activePlaylist}} disabled={{activePlaylist.isLastTrackActive}}>Next</button>
   
   <div class="timeline">
     {{videoPlayer.currentTimeFormatted}}

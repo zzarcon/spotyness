@@ -4,9 +4,24 @@ export default Ember.Controller.extend({
   needs: ['application'],
   tracks: [],
 
+  app: Ember.computed.alias('controllers.application'),
+  isFirstTrackActive: Ember.computed.equal('currentTrackIndex', 0),
+
+  isLastTrackActive: Ember.computed('currentTrackIndex', {
+    get() {
+      return this.get('app.currentTrack') === this.get('tracks.lastObject');
+    }
+  }),
+
+  currentTrackIndex: Ember.computed('app.currentTrack', {
+    get() {
+      return this.get('tracks').indexOf(this.get('app.currentTrack'));
+    }
+  }),
+
   actions: {
     play: function(track) {
-      this.get('controllers.application').play(track);
+      this.get('app').play(track);
     },
 
     navigate: function(direction) {
