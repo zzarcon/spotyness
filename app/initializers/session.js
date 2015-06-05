@@ -92,10 +92,6 @@ var Session = Ember.Object.extend({
 
 export function initialize(container, app) {
   app.register('session:main', Session, {singleton: true});
-  var session = container.lookup('session:main');
-
-  app.deferReadiness();
-  session.setPreviousToken().then(app.advanceReadiness.bind(app));
 
   app.inject('controller', 'session', 'session:main');
   app.inject('route', 'session', 'session:main');
@@ -103,6 +99,7 @@ export function initialize(container, app) {
   app.inject('view', 'session', 'session:main');
   app.inject('model', 'session', 'session:main');
   app.inject('adapter', 'session', 'session:main');
+
 }
 
 export default {
