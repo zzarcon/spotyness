@@ -77,7 +77,7 @@ var Session = Ember.Object.extend({
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
       if (!token) {
-        resolve();
+        this.login(resolve);
         return;
       }
 

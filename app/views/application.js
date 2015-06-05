@@ -13,5 +13,9 @@ export default Ember.View.extend({
         this.toggleProperty('isInputFocused');
       }, 10);
     }.bind(this));
+  }.on('didInsertElement'),
+
+  removeAppLoader: function() {
+    $('#app-loader').remove();
   }.on('didInsertElement')
 });
