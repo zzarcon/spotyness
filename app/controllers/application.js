@@ -7,6 +7,7 @@ export default Ember.Controller.extend({
   videoPlayer: null,
   activePlaylist: Ember.computed.alias('controllers.playlist'),
   myPlaylists: Ember.computed.alias('controllers.playlists.mine'),
+  existPlayer: Ember.computed.bool('currentVideo.id'),
   searchQuery: "joy divisio",
   searchQueryDelay: null,
   searchResults: [],
@@ -94,6 +95,13 @@ export default Ember.Controller.extend({
 
     setCurrentVideo: function(video) {
       this.set('currentVideo', video);
+    },
+
+    enterFullscreen: function() {
+      var iframe = this.get('videoPlayer.player').getIframe();
+      var requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
+
+      requestFullScreen.bind(iframe)();
     }
   }
 });

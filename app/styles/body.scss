@@ -47,7 +47,16 @@
       overflow: hidden;
       height: 10rem;
 
+      &.exist-player{
+        button {
+          display: block;
+        }
+      }
+      button{
+        display: none;
+      }
       iframe{
+        pointer-events: none;
         width: 100%;
         height: 100%;
       }

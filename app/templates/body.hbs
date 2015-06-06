@@ -5,8 +5,9 @@
         {{#link-to "playlist" playlist.id tagName="li" class="fa fa-anchor"}}{{playlist.name}}{{/link-to}}
       {{/each}}
     </ul>
-    <div class="current-video">
-      {{#if currentVideo.id}}
+    <div class="current-video {{if existPlayer 'exist-player'}}">
+      <button {{action "enterFullscreen"}}>Full screen</button>
+      {{#if existPlayer}}
         {{ember-youtube ytid=currentVideo.id autoplay=true showControls=false showTime=false showProgress=false delegate=controller delegate-as="videoPlayer" ended="onEnd"}}
       {{else}}
         No video

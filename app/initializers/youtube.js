@@ -20,14 +20,16 @@ var Youtube = Ember.Object.extend({
 });
 
 function onGoogleApiLoad() {
+  console.log('onGoogleApiLoad');
   gapi.load('auth2', function() {
+    console.log('auth2 loaded');
     gapi.client.load('youtube', 'v3').then(function() {
       console.log('youtube client loaded');
       gapi.auth2.init({fetch_basic_profile: false, scope: scopes});
     });
   });
 }
-
+console.log('import onGoogleApiLoad');
 //Import global function for Google JS Sdk
 window.onGoogleApiLoad = onGoogleApiLoad;
 
