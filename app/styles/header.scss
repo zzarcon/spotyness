@@ -2,7 +2,11 @@
   height: 3rem;
   background: rgba(0, 0, 0, 0.23);
   border-bottom: 1px solid rgba(255,255,255, 0.2);
-
+  
+  #signin-button{
+    float: left;
+  }
+  
   .search-results{
     position: absolute;
     background-color: white;

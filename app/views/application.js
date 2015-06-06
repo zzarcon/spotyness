@@ -17,5 +17,9 @@ export default Ember.View.extend({
 
   removeAppLoader: function() {
     $('#app-loader').remove();
+  }.on('didInsertElement'),
+
+  renderGoogleButton: function() {
+    gapi.signin2.render('signin-button', {scope: 'https://www.googleapis.com/auth/plus.login', fetch_basic_profile: false});
   }.on('didInsertElement')
 });
