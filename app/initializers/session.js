@@ -2,8 +2,9 @@ import Ember from "ember";
 import env from "spotyness/config/environment";
 
 function getLoginURL(scopes) {
+  var redirectUri = encodeURIComponent(`http://${location.host}${env.redirectUri}`);
   return 'https://accounts.spotify.com/authorize?client_id=' + env.clientId +
-    '&redirect_uri=' + encodeURIComponent(env.redirectUri) +
+    '&redirect_uri=' + redirectUri +
     '&scope=' + encodeURIComponent(scopes.join(' ')) +
     '&response_type=token';
 }
