@@ -10,8 +10,11 @@
     border-left: none;
     border-right: none;
 
-    td {
-      padding: 0.8rem;
+    th {
+      cursor: pointer;
+      &:hover{
+        background-color: #ccc;
+      }
     }
   }
 

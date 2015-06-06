@@ -9,15 +9,15 @@
 <table>
   <thead>
     <tr>
-      <th>Song</th>
-      <th>Artist</th>
-      <th>Album</th>
-      <th>Added</th>
-      <th>Duration</th>
+      <th {{action "changeSort" "name"}}>Song</th>
+      <th {{action "changeSort" "mainArtist.name"}}>Artist</th>
+      <th {{action "changeSort" "album.name"}}>Album</th>
+      <th {{action "changeSort" "addedAt"}}>Added</th>
+      <th {{action "changeSort" "duration_ms"}}>Duration</th>
     </tr>
   </thead>
   <tbody class="tracks">
-    {{#each track in tracks}}
+    {{#each track in sortedTracks}}
       <tr {{action "play" track}} class={{if track.isActive "is-active"}}>
         <td>{{track.name}}</td>
         {{#link-to "artist" track.mainArtist.id class="artist-name" tagName="td"}}
