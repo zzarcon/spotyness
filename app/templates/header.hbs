@@ -7,7 +7,7 @@
       {{#if loadingResults}}
         <li>Loading...</li>
       {{else}}
-        {{#each result in searchResults}}
+        {{#each searchResults as |result|}}
           <li {{action "setCurrentVideo" result}}>
             <img src={{result.img}} alt={{result.name}}>
             {{result.name}}

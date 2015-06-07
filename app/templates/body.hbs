@@ -1,7 +1,7 @@
 <div id="app-content">
   <div class="sidebar-left">
     <ul class="playlist">
-      {{#each playlist in myPlaylists}}
+      {{#each myPlaylists as |playlist|}}
         {{#link-to "playlist" playlist.id tagName="li" class="fa fa-anchor"}}{{playlist.name}}{{/link-to}}
       {{/each}}
     </ul>

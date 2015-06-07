@@ -17,7 +17,7 @@
     </tr>
   </thead>
   <tbody class="tracks">
-    {{#each track in sortedTracks}}
+    {{#each sortedTracks as |track|}}
       <tr {{action "play" track}} class={{if track.isActive "is-active"}}>
         <td>{{track.name}}</td>
         {{#link-to "artist" track.mainArtist.id class="artist-name" tagName="td"}}
