@@ -20,6 +20,10 @@ export default Ember.View.extend({
   }.on('didInsertElement'),
 
   renderGoogleButton: function() {
+    if (this.get('session.isLoggedInYoutube') || !this.get('session.googleAuth')) {
+      return;
+    }
+
     gapi.signin2.render('signin-button', {scope: 'https://www.googleapis.com/auth/plus.login', fetch_basic_profile: false});
-  }.on('didInsertElement')
+  }.observes('session.isLoggedInYoutube', 'session.googleAuth')
 });

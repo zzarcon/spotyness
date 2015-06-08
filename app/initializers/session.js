@@ -12,7 +12,10 @@ function getLoginURL(scopes) {
 var Session = Ember.Object.extend({
   user: null,
   token: null,
-  isLogged: Ember.computed.bool('user.id'),
+  googleAuth: null,
+  isLogged: Ember.computed.and('isLoggedInSpotify', 'isLoggedInYoutube'),
+  isLoggedInSpotify: Ember.computed.bool('user.id'),
+  isLoggedInYoutube: false,
   storageKey: 'spotify-token',
   scopes: ['user-read-email', 'playlist-read-private', 'playlist-read-collaborative', 'user-follow-read', 'user-library-read'],
 
@@ -88,6 +91,18 @@ var Session = Ember.Object.extend({
       me.then(resolve);
       me.error(resolve);
     }.bind(this));
+  },
+
+  onGoogleAuthChange: Ember.observer('googleAuth', function() {
+    var isSignedIn = this.get('googleAuth.isSignedIn');
+    if (!isSignedIn) return;
+
+    this.set('isLoggedInYoutube', isSignedIn.get());
+    isSignedIn.listen(this.updateSignIn.bind(this));
+  }),
+
+  updateSignIn: function(isSignedIn) {
+    this.set('isLoggedInYoutube', isSignedIn);
   }
 });
 

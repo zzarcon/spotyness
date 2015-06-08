@@ -19,16 +19,16 @@ var Youtube = Ember.Object.extend({
   }
 });
 
-function onGoogleApiLoad() {
+function onGoogleApiLoad(session) {
   gapi.load('auth2', function() {
     gapi.client.load('youtube', 'v3').then(function() {
-      gapi.auth2.init({fetch_basic_profile: false, scope: scopes});
+      gapi.auth2.init({fetch_basic_profile: false, scope: scopes}).then(function() {
+        session.set('googleAuth', gapi.auth2.getAuthInstance());
+      });
     });
   });
 }
 
-//Force execution since the google api script is mandatory in the head
-onGoogleApiLoad();
 //Import global function for Google JS Sdk
 window.onGoogleApiLoad = onGoogleApiLoad;
 
@@ -40,9 +40,13 @@ export function initialize(container, app) {
   app.inject('router', 'youtube', 'youtube:main');
   app.inject('view', 'youtube', 'youtube:main');
   app.inject('model', 'youtube', 'youtube:main');
+
+  //Force execution since the google api script is mandatory in the head
+  onGoogleApiLoad(container.lookup('session:main'));
 }
 
 export default {
   name: 'youtube',
+  after: ['session'],
   initialize: initialize
 };
