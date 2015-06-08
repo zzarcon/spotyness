@@ -28,9 +28,9 @@
 
       li{
         cursor: pointer;
-        //margin: 10px 0;
-        padding: 10px 0;
-        text-indent: 20px;
+        display: block;
+        padding: 15px 0;
+        text-indent: 25px;
 
         &.active{
           border-left: 4px solid #5cb85c;
