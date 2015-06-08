@@ -25,5 +25,5 @@ export default Ember.View.extend({
     }
 
     gapi.signin2.render('signin-button', {scope: 'https://www.googleapis.com/auth/plus.login', fetch_basic_profile: false});
-  }.observes('session.isLoggedInYoutube', 'session.googleAuth')
+  }.observes('session.isLoggedInYoutube', 'session.isLoggedInSpotify', 'session.googleAuth').on('didInsertElement')
 });
