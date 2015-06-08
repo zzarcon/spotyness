@@ -28,9 +28,9 @@ var Session = Ember.Object.extend({
       if (hash.type !== 'access_token') return;
 
       this.setToken(hash.access_token);
-      this.getMe();
-      
-      Ember.typeOf(callback) === "function" && callback(hash.access_token);
+      this.getMe().then(function() {
+        Ember.typeOf(callback) === "function" && callback(hash.access_token);
+      });
     }.bind(this), false);
 
     window.open(url,
@@ -83,7 +83,7 @@ var Session = Ember.Object.extend({
       }
 
       this.setToken(token);
-      
+
       var me = this.getMe();
       me.then(resolve);
       me.error(resolve);
