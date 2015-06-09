@@ -5,29 +5,5 @@
 {{#unless tracks.length}}
   No tracks...
 {{/unless}}
-
-<table>
-  <thead>
-    <tr>
-      <th {{action "changeSort" "name"}}>Song</th>
-      <th {{action "changeSort" "mainArtist.name"}}>Artist</th>
-      <th {{action "changeSort" "album.name"}}>Album</th>
-      <th {{action "changeSort" "addedAt"}}>Added</th>
-      <th {{action "changeSort" "duration_ms"}}>Duration</th>
-    </tr>
-  </thead>
-  <tbody class="tracks">
-    {{#each sortedTracks as |track|}}
-      <tr {{action "play" track}} class={{if track.isActive "is-active"}}>
-        <td>{{track.name}}</td>
-        {{#link-to "artist" track.mainArtist.id class="artist-name" tagName="td"}}
-          {{track.mainArtist.name}}
-        {{/link-to}}
-        <td>{{track.album.name}}</td>
-        <td>{{track.addedAgo}}</td>
-        <td>{{track.duration}}</td>
-      </tr>
-    {{/each}}
-  </tbody>
-</table>
+{{tracks-list content=tracks}}
 {{outlet}}

@@ -1,45 +1,5 @@
 #playlist{
-  padding: 10px;
-
-  table {
-    width: 100%;
-  }
-
-  thead {
-    border: 1px solid rgba(255,255,255, 0.2);
-    border-left: none;
-    border-right: none;
-
-    th {
-      cursor: pointer;
-      &:hover{
-        background-color: #ccc;
-      }
-    }
-  }
-
-  th, td{
-    padding: 0.75rem;
-    text-align: left;
-  }
-
-  .tracks{
-    tr{
-      cursor: pointer;
-      color: rgba(255,255,255, 0.8);
-
-      &:hover, &.is-active{
-        background: rgba(0, 0, 0, 0.1);
-      }
-    }
-    .artist-name{
-      cursor: pointer;
-
-      &:hover{
-        text-decoration: underline;
-      }
-    }
-  }
+  padding: 10px;  
 }
 
 .playlist-header {

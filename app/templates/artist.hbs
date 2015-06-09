@@ -1,7 +1,6 @@
 <h1>{{model.name}}</h1>
 <img src={{model.smallImg}}>
 
-{{#each model.topTracks as |track|}}
-  <div>{{track.name}}</div>
-{{/each}}
+<h2>Top tracks</h2>
+{{tracks-list content=model.topTracks fromPlaylist=false}}
 {{outlet}}
