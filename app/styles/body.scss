@@ -45,8 +45,11 @@
     }
     .current-video{
       overflow: hidden;
-      height: 10rem;
-
+      height: 3rem;
+      
+      &.big-player{
+        height: 10rem;
+      }
       &.exist-player{
         button {
           display: block;

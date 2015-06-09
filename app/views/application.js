@@ -4,6 +4,7 @@ export default Ember.View.extend({
   elementId: "spotyness",
   isQueryPresent: Ember.computed.bool('controller.searchQuery'),
   showSearchResults: Ember.computed.and('isQueryPresent', 'isInputFocused'),
+  isBigPlayerActive: false,
 
   setupEvents: function() {
     var input = this.$('#search-query');
@@ -25,5 +26,11 @@ export default Ember.View.extend({
     }
 
     gapi.signin2.render('signin-button', {scope: 'https://www.googleapis.com/auth/plus.login', fetch_basic_profile: false});
-  }.observes('session.isLoggedInYoutube', 'session.isLoggedInSpotify', 'session.googleAuth').on('didInsertElement')
+  }.observes('session.isLoggedInYoutube', 'session.isLoggedInSpotify', 'session.googleAuth').on('didInsertElement'),
+
+  actions: {
+    togglePlayerSize() {
+      this.toggleProperty('isBigPlayerActive');
+    }
+  }
 });
