@@ -9,7 +9,7 @@
    }
 
   .sidebar-left{
-    width: 15vw;
+    width: 13vw;
   }
 
   .sidebar-left{
@@ -17,10 +17,14 @@
     @include flex-direction(column);
     background-color: $light-black;
     color: $gray-font-color;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
     border-right: 1px solid $main-black;
-
+    
+    .scrolling-content{
+      @include flex(1);
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
     .sidebar-label{
       text-transform: capitalize;
     }
@@ -59,16 +63,43 @@
       }
     }
     .current-video{
-      overflow: hidden;
-      height: 3rem;
+      position: relative;
       
+      &:hover{
+        .videoplayer-action{
+          opacity: 1;
+        }
+      }
       &.big-player{
-        height: 10rem;
+
       }
       &.exist-player{
         button {
           display: block;
         }
+      }
+      .videoplayer-action{
+        opacity: 0;
+        padding: 2px 5px;
+        border-radius: 7px;
+        color: white;
+        transition: all 0.35s;
+        cursor: pointer;
+        position: absolute;
+        right: 5px;
+        background-color: rgba(black, 0.6);
+        border: 1px solid transparent;
+
+        &:hover{
+          text-shadow: 1px 1px black;
+          border-color: white;
+        }
+      }
+      .full-screen-mode{
+        bottom: 5px;
+      }
+      .toggle-player-size{
+        top: 5px;
       }
       button{
         display: none;

@@ -4,7 +4,7 @@ export default Ember.View.extend({
   elementId: "spotyness",
   isQueryPresent: Ember.computed.bool('controller.searchQuery'),
   showSearchResults: Ember.computed.and('isQueryPresent', 'isInputFocused'),
-  isBigPlayerActive: false,
+  isBigPlayerActive: true,
 
   setupEvents: function() {
     var input = this.$('#search-query');

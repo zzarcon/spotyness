@@ -24,8 +24,11 @@
       cursor: pointer;
       color: rgba(255,255,255, 0.8);
 
-      &:hover, &.is-active{
+      &:hover{
         background: $gray;
+      }
+      &.is-active {
+        color: $green-active;
       }
     }
     .artist-name{

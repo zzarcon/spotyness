@@ -11,9 +11,11 @@
   {{#each sortedContent as |track|}}
     <tr {{action "play" track}} class={{if track.isActive "is-active"}}>
       <td>{{track.name}}</td>
-      {{#link-to "artist" track.mainArtist.id class="artist-name" tagName="td"}}
-        {{track.mainArtist.name}}
-      {{/link-to}}
+      <td>
+        {{#link-to "artist" track.mainArtist.id class="artist-name"}}
+          {{track.mainArtist.name}}
+        {{/link-to}}
+      </td>
       <td>{{track.album.name}}</td>
       {{#if fromPlaylist}}<td>{{track.addedAgo}}</td>{{/if}}
       <td>{{track.duration}}</td>

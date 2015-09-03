@@ -20,7 +20,10 @@ html, body{
 html, body, #spotyness{
   height: 100%;
 }
-
+a{
+  text-decoration: none;
+  color: inherit;
+}
 ::-webkit-input-placeholder { 
     color: black;
 }
