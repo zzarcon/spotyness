@@ -20,7 +20,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     border-right: 1px solid $main-black;
-    
+
     .sidebar-label{
       text-transform: capitalize;
     }
@@ -50,7 +50,7 @@
           margin-right: 1rem;
         }
         &.active{
-          border-left-color: #5cb85c;
+          border-left-color: $green-active;
           color: white;
         }
         &:hover{

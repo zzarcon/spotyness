@@ -1,17 +1,16 @@
 <footer id="app-footer">
-  <button {{action "togglePlay" target=videoPlayer}}>
-    {{#if videoPlayer.isPlaying}}Pause{{else}}Play{{/if}}
-  </button>
-  <button {{action "toggleVolume" target=videoPlayer}}>
-      {{#if videoPlayer.isMuted}}Unmute{{else}}Mute{{/if}}
-  </button>
-  <button {{action "navigate" "prev" target=activePlaylist}} disabled={{activePlaylist.isFirstTrackActive}}>Prev</button>
-  <button {{action "navigate" "next" target=activePlaylist}} disabled={{activePlaylist.isLastTrackActive}}>Next</button>
-  
+  <i {{action "navigate" "prev" target=activePlaylist}} disabled={{activePlaylist.isFirstTrackActive}} class="navigate-icon fa fa-step-backward"></i>
+  <div {{action "togglePlay" target=videoPlayer}} class="toggle-play {{if videoPlayer.isPlaying 'is-playing'}}">
+    {{#if videoPlayer.isPlaying}}<i class="fa fa-pause"></i>{{else}}<i class="fa fa-play"></i>{{/if}}
+  </div>
+  <i {{action "navigate" "next" target=activePlaylist}} disabled={{activePlaylist.isLastTrackActive}} class="navigate-icon fa fa-step-forward"></i>
   <div class="timeline">
     {{videoPlayer.currentTimeFormatted}}
     <input id="video-slider" type="range" min="0" max={{videoPlayer.durationValue}} value={{videoPlayer.currentTimeValue}} {{action "seekTo"}}>
     {{videoPlayer.durationFormatted}}
+  </div>
+  <div {{action "toggleVolume" target=videoPlayer}} class="toggle-volume">
+      {{#if videoPlayer.isMuted}}<i class="fa fa-volume-off"></i>{{else}}<i class="fa fa-volume-up"></i>{{/if}}
   </div>
   <input id="video-volume" type="range" min="0" max="100" value={{initialVolume}} {{action "changeVolume"}}>
 </footer>

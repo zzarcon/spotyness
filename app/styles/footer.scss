@@ -1,5 +1,58 @@
 #app-footer{
+  @include flexbox;
+  @include align-items(center);
+  background-color: $light-black;
   height: 5rem;
   border-top: 1px solid $main-black;
   color: white;
+  padding: 0 20px;
+  
+  .navigate-icon{
+    cursor: pointer;
+    float: left;
+    font-size: 25px;
+  }
+  .toggle-play{
+    @include center-items;
+    @include square(50px);
+    margin: 0 10px;
+    float: left;
+    font-size: 30px;
+    border-radius: 100%;
+    border: 1px solid $gray-font-color;
+    cursor: pointer;
+
+    &.is-playing:hover{
+      border-color: white;
+    }
+    &:not(.is-playing):hover{
+      border-color: $green-active;
+    }
+  }
+  .timeline{
+    @include flexbox;
+    @include align-items(center);
+    @include flex(1);
+    margin: 0 10px;
+    color: $gray-font-color;
+    font-size: 10px;
+
+    input{
+      @include flex(1);
+      margin: 0 10px;
+    }
+  }
+  .toggle-volume{
+    transition: all 0.2s;
+    cursor: pointer;
+    border-radius: 100%;
+    width: 22px;
+    text-align: center;
+    color: $gray-font-color;
+
+    &:hover{
+      background-color: $gray-font-color;
+      color: white;
+    }
+  }
 }
