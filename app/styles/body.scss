@@ -1,8 +1,7 @@
 #app-content{
   @include flexbox;
   @include flex(1);
-  background: rgba(0, 0, 0, 0.23);
-  color: #f4f4f4;
+  color: white;
   font-size: 0.8rem;
 
   .sidebar-right{
@@ -16,30 +15,46 @@
   .sidebar-left{
     @include flexbox;
     @include flex-direction(column);
-
+    background-color: $light-black;
+    color: $gray-font-color;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-right: 1px solid $main-black;
+    
+    .sidebar-label{
+      text-transform: capitalize;
+    }
+    .playlist-label{
+      padding: 20px;
+    }
     .playlist{
       @include flex(1);
       margin: 0;
       padding: 0 10px 0 0;
-      overflow-y: auto;
-      overflow-x: hidden;
       list-style-type: none;
-      border-right: 1px solid rgba(255,255,255, 0.2);
 
       li{
         cursor: pointer;
-        //margin: 10px 0;
-        padding: 10px 0;
+        padding: 5px 0;
         text-indent: 20px;
+        display: block;
+        overflow: hidden;
+        height: 1.5rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-left-width: 4px;
+        border-left-style: solid;
+        border-left-color: transparent;
 
-        &.active{
-          border-left: 4px solid #5cb85c;
-          background: rgba(0,0,0, 0.3);
+        &:before{
+          margin-right: 1rem;
         }
-
+        &.active{
+          border-left-color: #5cb85c;
+          color: white;
+        }
         &:hover{
-          border-left: 4px solid rgba(255,255,255, 0.4 );
-          background: rgba(0,0,0, 0.1);
+          color: white;
         }
       }
     }

@@ -1,6 +1,5 @@
 <header id="app-header">
-  {{#link-to "application"}}Home{{/link-to}}
-  {{input elementId="search-query" type="search" placeholder="Search song..." value=searchQuery}}
+  {{input elementId="search-query" type="search" placeholder="Search" value=searchQuery}}
   {{#if view.showSearchResults}}
     <ul class="search-results">
       {{#if loadingResults}}
@@ -16,7 +15,7 @@
     </ul>
   {{/if}}
   <div class="me">
-    <img src="{{session.user.img}}" alt="session.user.display_name">
-    {{session.user.display_name}}
+    <img src="{{session.user.img}}" alt="session.user.id">
+    {{session.user.id}}
   </div>
 </header>

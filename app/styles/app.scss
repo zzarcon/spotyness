@@ -1,6 +1,7 @@
 @import "bower_components/sass-flex-mixin/flex";
 
 @import url(http://fonts.googleapis.com/css?family=Noto+Sans);
+@import "config";
 @import "header";
 @import "body";
 @import "footer";
@@ -19,21 +20,20 @@ html, body, #spotyness{
   height: 100%;
 }
 
+::-webkit-input-placeholder { 
+    color: black;
+}
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 8px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
-  -webkit-border-radius: 10px;
   border-radius: 10px;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
-  -webkit-border-radius: 10px;
   border-radius: 10px;
-  background: rgba(0,0,0,0.15);
+  background: $gray;
 }
 ::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(0,0,0,0.15);
@@ -41,10 +41,11 @@ html, body, #spotyness{
 
 body{
   overflow: hidden;
-  background-image: url('/assets/images/bck.jpg');
   background-size: 100% 100%;
   background-attachment: fixed;
   font-family: 'Noto Sans', sans-serif;
+  background-color: $main-black;
+  color: white;
 }
 
 table {

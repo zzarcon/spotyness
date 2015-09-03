@@ -1,8 +1,14 @@
 #app-header{
   height: 3rem;
   background: rgba(0, 0, 0, 0.23);
-  border-bottom: 1px solid rgba(255,255,255, 0.2);
+  border-bottom: 1px solid $main-black;
+  background-color: $light-black;
+  color: $gray-font-color;
+  padding: 0 1rem;
   
+  #search-query{
+    color: black;
+  }
   #signin-button{
     float: left;
   }
@@ -24,10 +30,16 @@
     }
   }
   .me{
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
     float: right;
+    height: 100%;
 
     img{
       height: 2.5rem;
+      border-radius: 100%;
+      margin-right: 0.5rem;
     }
   }
 }

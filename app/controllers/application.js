@@ -8,7 +8,7 @@ export default Ember.Controller.extend({
   activePlaylist: Ember.computed.alias('controllers.playlist'),
   myPlaylists: Ember.computed.alias('controllers.playlists.mine'),
   existPlayer: Ember.computed.bool('currentVideo.id'),
-  searchQuery: "joy divisio",
+  searchQuery: "",
   searchQueryDelay: null,
   searchResults: [],
   loadingResults: false,
