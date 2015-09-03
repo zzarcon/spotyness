@@ -25,5 +25,8 @@ export default Ember.Route.extend({
 
     controller.set('content', model);
     controller.set('tracks', tracks);
+
+    //Autoplay first track when enter in a playlist
+    this.send('play', tracks.get('lastObject'));
   }
 });

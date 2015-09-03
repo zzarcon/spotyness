@@ -5,15 +5,18 @@ var scopes = 'https://www.googleapis.com/auth/plus.login https://www.googleapis.
 
 var Youtube = Ember.Object.extend({
   search: function(query, maxResults = 1) {
-    var request = gapi.client.youtube.search.list({
-      q: query,
-      part: 'snippet',
-      type: 'video',
-      maxResults: maxResults,
-      order: 'viewCount' //rating, relevance
-    });
-
     return new Ember.RSVP.Promise(function(resolve) {
+      var youtube = gapi.client.youtube;
+      if (!youtube) return;
+      
+      var request = youtube.search.list({
+        q: query,
+        part: 'snippet',
+        type: 'video',
+        maxResults: maxResults,
+        order: 'viewCount' //rating, relevance
+      });
+
       request.execute(resolve);
     });
   }
