@@ -90,6 +90,7 @@ var Session = Ember.Object.extend({
       this.setToken(token);
 
       var me = this.getMe();
+
       me.then(resolve);
       me.error(resolve);
     }.bind(this));
@@ -105,22 +106,44 @@ var Session = Ember.Object.extend({
 
   updateSignIn: function(isSignedIn) {
     this.set('isLoggedInYoutube', isSignedIn);
+  },
+
+  start(youtube) {
+    var dependencies = [this.setPreviousToken(), onGoogleApiLoad(this)];
+
+    return Ember.RSVP.all(dependencies);
   }
 });
+
+function onGoogleApiLoad(session) {
+  return new Ember.RSVP.Promise(function(resolve) {
+    gapi.load('auth2', function() {
+      gapi.client.load('youtube', 'v3').then(function() {
+        gapi.auth2.init({fetch_basic_profile: false, scope: env.scopes}).then(function() {
+          session.set('googleAuth', gapi.auth2.getAuthInstance());
+          resolve();
+        });
+      });
+    });
+  });
+}
+
+//Export global function for Google JS Sdk
+window.onGoogleApiLoad = onGoogleApiLoad;
 
 export function initialize(container, app) {
   app.register('session:main', Session, {singleton: true});
   var session = container.lookup('session:main');
 
   app.deferReadiness();
-  session.setPreviousToken().then(app.advanceReadiness.bind(app));
+  session.start().then(app.advanceReadiness.bind(app));
 
   app.inject('controller', 'session', 'session:main');
   app.inject('route', 'session', 'session:main');
   app.inject('router', 'session', 'session:main');
   app.inject('view', 'session', 'session:main');
   app.inject('model', 'session', 'session:main');
-  app.inject('adapter', 'session', 'session:main');
+  app.inject('adapter', 'session', 'session:main');  
 }
 
 export default {

@@ -1,5 +1,8 @@
 <header id="app-header">
-  {{input elementId="search-query" type="search" placeholder="Search" value=searchQuery}}
+  <div class="header-left">
+    {{#link-to "application" tagName="i" class="fa fa-home home-icon"}}{{/link-to}}
+    {{input elementId="search-query" type="search" placeholder="Search" value=searchQuery}}
+  </div>
   {{#if view.showSearchResults}}
     <ul class="search-results">
       {{#if loadingResults}}
