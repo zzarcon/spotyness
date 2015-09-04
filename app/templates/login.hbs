@@ -1,0 +1,7 @@
+{{#unless session.isLoggedInYoutube}}
+  <div id="signin-button"></div>
+{{/unless}}
+{{#unless session.isLoggedInSpotify}}
+  <button {{action "spotyLogin"}}>Spoty login</button>
+{{/unless}}
+{{outlet}}

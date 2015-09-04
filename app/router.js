@@ -9,6 +9,7 @@ Router.map(function() {
   this.route('playlist', {path: "playlist/:playlist_id"});
   this.route('user');
   this.route('artist', {path: "artist/:artist_id"});
+  this.route('login');
 });
 
 export default Router;

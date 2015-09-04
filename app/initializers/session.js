@@ -13,6 +13,7 @@ var Session = Ember.Object.extend({
   user: null,
   token: null,
   googleAuth: null,
+  hasUser: Ember.computed.bool('user'),
   isLogged: Ember.computed.and('isLoggedInSpotify', 'isLoggedInYoutube'),
   isLoggedInSpotify: Ember.computed.bool('user.id'),
   isLoggedInYoutube: false,
@@ -81,7 +82,8 @@ var Session = Ember.Object.extend({
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
       if (!token) {
-        this.login(resolve);
+        resolve();
+        // this.login(resolve);
         return;
       }
 
