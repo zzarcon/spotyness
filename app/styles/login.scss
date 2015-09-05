@@ -1,8 +1,17 @@
+@mixin active-icon() {
+  opacity: 1;
+  color: $green-active;    
+}
 #login-section{
-  @mixin active-icon() {
-    opacity: 1;
-    color: $green-active;    
+  height: 100%;
+
+  .login-bg{
+    @include square(100%);
+    background: url(images/wood.jpg) no-repeat;
+    background-size: cover;
+    opacity: 0.6;
   }
+
   .login-wrapper{
     position: absolute;
     top: 50%;
