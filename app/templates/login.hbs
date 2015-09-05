@@ -1,7 +1,18 @@
-{{#unless session.isLoggedInYoutube}}
-  <div id="signin-button"></div>
-{{/unless}}
-{{#unless session.isLoggedInSpotify}}
-  <button {{action "spotyLogin"}}>Spoty login</button>
-{{/unless}}
-{{outlet}}
+<div class="login-wrapper">
+  <div class="buttons {{if session.isLoggedInYoutube 'youtube'}} {{if session.isLoggedInSpotify 'spotify'}}">
+    <h1>Spotyness</h1>
+    <div class="youtube-wrap">
+      <div id="signin-button"></div>
+      <i class="fa fa-check google-check"></i>
+    </div>
+    <div class="spoty-wrap">
+      <div {{action "spotyLogin"}} class="spoty-button">
+        <i class="fa fa-spotify"></i> Spoty login
+      </div>
+      <i class="fa fa-check spoty-check"></i>
+    </div>
+  </div>
+  <div class="message">
+    <h2>Description of the application</h2>
+  </div>
+</div>

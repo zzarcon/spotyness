@@ -1,0 +1,70 @@
+#login-section{
+  @mixin active-icon() {
+    opacity: 1;
+    color: $green-active;    
+  }
+  .login-wrapper{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    > *{
+      padding: 2rem;
+    }
+
+    .buttons{
+      border-right: 1px solid;
+      float: left;
+      
+      &.spotify{
+        .spoty-check{
+          @include active-icon;
+        }
+        .spoty-wrap{
+          pointer-events: none;
+        }
+      }
+      &.youtube{
+        .google-check{
+          @include active-icon;
+        }
+        .youtube-wrap{
+          pointer-events: none;
+        }
+      }
+      .fa-check{
+        transition: all 0.8s;
+        opacity: 0.5;
+      }
+      #signin-button{
+        @include inline-flex;
+      }
+      .spoty-button{
+        background-color: $spoty-color;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 3px;
+        width: 120px;
+        border: 1px solid;
+        margin-top: 20px;
+        font-size: 14px;
+        display: inline-block;
+
+        &:hover{
+
+        }
+
+        i{
+          font-size: 20px;
+          margin-right: 5px;
+          vertical-align: middle;
+        }
+      }
+    }
+
+    .message{
+      float: right;
+    }
+  }
+}

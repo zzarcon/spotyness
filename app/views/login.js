@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.View.extend({
-  applicationId: "login-section",
+  elementId: "login-section",
   isGoogleButtonRendered: false,
 
   renderGoogleButton: function() {
