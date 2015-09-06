@@ -2,8 +2,10 @@
   <h1 class="playlist-title">{{model.name}} - ({{model.totalTracks}})</h1>
 </div>
 
-{{#unless tracks.length}}
+{{#if tracks.length}}
+  {{tracks-list content=tracks}}
+{{else}}
   No tracks...
-{{/unless}}
-{{tracks-list content=tracks}}
+{{/if}}
+
 {{outlet}}

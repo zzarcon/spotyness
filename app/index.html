@@ -17,7 +17,15 @@
     {{content-for 'head-footer'}}
   </head>
   <body>
-    <div id="app-loader">LOADING...</div>
+    <div id="app-loader">
+        <div class="ui-spinner">
+          <div class="rect1"></div>
+          <div class="rect2"></div>
+          <div class="rect3"></div>
+          <div class="rect4"></div>
+          <div class="rect5"></div>
+        </div>
+    </div>
     {{content-for 'body'}}
 
     <script src="assets/vendor.js"></script>
