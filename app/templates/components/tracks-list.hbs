@@ -1,24 +1,28 @@
 <thead>
   <tr>
-    <th {{action "changeSort" "name"}}>Song</th>
-    <th {{action "changeSort" "mainArtist.name"}}>Artist</th>
-    <th {{action "changeSort" "album.name"}}>Album</th>
-    {{#if fromPlaylist}}<th {{action "changeSort" "addedAt"}}>Added</th>{{/if}}
-    <th {{action "changeSort" "duration_ms"}}>Duration</th>
+    <th {{action "changeSort" "name"}} class="track-name">Song</th>
+    <th {{action "changeSort" "mainArtist.name"}} class="track-artist">Artist</th>
+    <th {{action "changeSort" "album.name"}} class="track-album">Album</th>
+    {{#if fromPlaylist}}
+      <th {{action "changeSort" "addedAt"}} class="track-added">Added</th>
+    {{/if}}
+    <th {{action "changeSort" "duration_ms"}} class="track-duration">Duration</th>
   </tr>
 </thead>
 <tbody class="tracks">
   {{#each sortedContent as |track|}}
     <tr {{action "play" track}} class={{if track.isActive "is-active"}}>
-      <td>{{track.name}}</td>
-      <td>
+      <td class="track-name">{{track.name}}</td>
+      <td class="track-artist">
         {{#link-to "artist" track.mainArtist.id class="artist-name"}}
           {{track.mainArtist.name}}
         {{/link-to}}
       </td>
-      <td>{{track.album.name}}</td>
-      {{#if fromPlaylist}}<td>{{track.addedAgo}}</td>{{/if}}
-      <td>{{track.duration}}</td>
+      <td class="track-album">{{track.album.name}}</td>
+      {{#if fromPlaylist}}
+        <td class="track-added">{{track.addedAgo}}</td>
+      {{/if}}
+      <td class="track-duration">{{track.duration}}</td>
     </tr>
   {{/each}}
 </tbody>

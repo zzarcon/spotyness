@@ -26,7 +26,7 @@ export default DS.Model.extend({
 
   duration: Ember.computed('duration_ms', {
     get() {
-      var duration = moment.duration(this.get('duration_ms'))
+      var duration = moment.duration(this.get('duration_ms'));
       return `${duration.minutes()}:${duration.seconds()}`;
     }
   })
