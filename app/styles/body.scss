@@ -5,7 +5,8 @@
   font-size: 0.8rem;
 
   .sidebar-right{
-    width: 5vw;
+    //TODO: Disabled for now until implement something for it
+    // width: 5vw;
    }
 
   .sidebar-left{
@@ -19,7 +20,7 @@
     color: $gray-font-color;
     overflow: hidden;
     border-right: 1px solid $main-black;
-    
+
     .scrolling-content{
       @include flex(1);
       overflow-y: auto;
@@ -64,7 +65,7 @@
     }
     .current-video{
       position: relative;
-      
+
       &:hover{
         .videoplayer-action{
           opacity: 1;

@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('user');
   this.route('artist', {path: "artist/:artist_id"});
   this.route('login');
+  this.route('explore');
 });
 
 export default Router;

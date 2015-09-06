@@ -1,0 +1,28 @@
+#explore-section{
+  h2{
+    margin: 0 20px;
+    text-align: center;
+    border-bottom: 1px solid $gray-font-color;
+    padding: 10px;
+  }
+  ul{
+    list-style: none;
+    padding: 2px;
+    text-align: center;
+
+    li{
+      cursor: pointer;
+      display: inline-block;
+      text-align: center;
+      background-color: $gray;
+      margin: 5px;
+      padding-bottom: 5px;
+
+      img{
+        width: 150px;
+        display: block;
+        margin-bottom: 5px;
+      }
+    }
+  }
+}
