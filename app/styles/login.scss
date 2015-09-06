@@ -1,6 +1,6 @@
 @mixin active-icon() {
   opacity: 1;
-  color: $green-active;    
+  color: $green-active;
 }
 #login-section{
   height: 100%;
@@ -9,23 +9,21 @@
     @include square(100%);
     background: url(images/wood.jpg) no-repeat;
     background-size: cover;
-    opacity: 0.6;
+    opacity: 0.4;
   }
 
   .login-wrapper{
+    @include flexbox;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    
-    > *{
-      padding: 2rem;
-    }
 
     .buttons{
       border-right: 1px solid;
-      float: left;
-      
+      width: 220px;
+      text-align: center;
+
       &.spotify{
         .spoty-check{
           @include active-icon;
@@ -44,7 +42,6 @@
       }
       .divisor{
         text-align: center;
-        width: 120px;
         padding: 0px 5px 3px 5px;
         font-size: 25px;
       }
@@ -78,7 +75,18 @@
     }
 
     .message{
-      float: right;
+      white-space: nowrap;
+      padding-left: 10px;
+
+      h2{
+        color: $spoty-color;
+      }
+      .description{
+        white-space: normal;
+      }
+      ul{
+        padding-left: 2rem;
+      }
     }
   }
 }
