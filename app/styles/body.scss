@@ -70,13 +70,35 @@
           opacity: 1;
         }
       }
-      &.big-player{
-
+      &:not(.big-player){
+        .EmberYoutube{
+          float: left;
+        }
+        .current-track-info{
+          display: inline-block;
+        }
+        .toggle-player-size{
+          left: 5px;
+          width: 25px;
+        }
+        .full-screen-mode{
+          opacity: 0;
+        }
+        iframe{
+          @include square(60px);
+        }
       }
       &.exist-player{
         button {
           display: block;
         }
+      }
+      .current-track-info{
+        white-space: nowrap;
+        display: none;
+        padding: 10px;
+        overflow: hidden;
+        width: 120px;
       }
       .videoplayer-action{
         opacity: 0;

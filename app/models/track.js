@@ -14,6 +14,7 @@ export default DS.Model.extend({
   //Fix serializer
   duration_ms: attr('number'),
 
+  artistName: Ember.computed.alias('mainArtist.name'),
   mainArtist: Ember.computed.alias('artists.firstObject'),
   isActive: false,
 

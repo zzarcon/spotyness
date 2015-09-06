@@ -18,6 +18,7 @@ export default Ember.Controller.extend({
     var currentTrack = this.get('currentTrack');
 
     currentTrack && currentTrack.set('isActive', false);
+
     track.set('isActive', true);
     this.set('currentTrack', track);
 

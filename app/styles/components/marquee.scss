@@ -1,0 +1,22 @@
+.marquee {
+  margin: 0 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  div {
+    padding-left: 100%; 
+    animation: marquee 15s linear infinite;
+
+    &:hover{
+      animation-play-state: paused
+    }
+  }
+}
+
+
+/* Make it move */
+@keyframes marquee {
+    0%   { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+}

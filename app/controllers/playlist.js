@@ -23,7 +23,8 @@ export default Ember.Controller.extend({
       var current = this.get('controllers.application.currentTrack');
       var index = this.get('tracks').indexOf(current);
       var next = this.get('tracks').objectAt(index + (direction === "next" ? 1 : -1));
-
+      
+      //TODO: Fix next song
       next && this.get('controllers.application').play(next);
     }
   }
