@@ -21,7 +21,6 @@ var Session = Ember.Object.extend({
   scopes: ['user-read-email', 'playlist-read-private', 'playlist-read-collaborative', 'user-follow-read', 'user-library-read'],
 
   login: function(callback) {
-    debugger;
     var url = getLoginURL(this.get('scopes'));
     var width = 450;
     var height = 730;
@@ -145,7 +144,7 @@ export function initialize(container, app) {
   app.inject('router', 'session', 'session:main');
   app.inject('view', 'session', 'session:main');
   app.inject('model', 'session', 'session:main');
-  app.inject('adapter', 'session', 'session:main');  
+  app.inject('adapter', 'session', 'session:main');
 }
 
 export default {
