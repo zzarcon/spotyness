@@ -1,9 +1,9 @@
 import ApplicationAdapter from './application';
 
 export default ApplicationAdapter.extend({
-  buildURL: function(type, params) {
-    var playlistId = params.playlist_id;
-    var artistId = params.artistId;
+  buildURL: function(modelName, id, snapshot, requestType, query) {
+    var playlistId = query.playlist_id;
+    var artistId = query.artistId;
 
     if (playlistId) {
       return `${this.get('host')}/users/${this.get('session.user.id')}/playlists/${playlistId}/tracks`;

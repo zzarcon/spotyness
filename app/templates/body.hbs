@@ -15,8 +15,6 @@
       </div>
       {{#if existPlayer}}
         {{ember-youtube ytid=currentVideo.id autoplay=true showControls=false showTime=false showProgress=false delegate=controller delegate-as="videoPlayer" ended="onEnd"}}
-      {{else}}
-        No video
       {{/if}}
       <div class="current-track-info marquee">
         <div class="track-name">{{currentTrack.name}}</div>
