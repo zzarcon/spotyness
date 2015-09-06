@@ -1,0 +1,12 @@
+<div id="explore-section">
+  <h2>Featured playlists</h2>
+  <ul>
+    {{#each musicman.featuredPlaylists as |playlist|}}
+      {{#link-to "playlist" playlist.id tagName="li"}}
+        <img src="{{playlist.images.firstObject.url}}" alt="{{playlist.name}}">
+        {{playlist.name}}
+        {{playlist.tracks.total}}
+      {{/link-to}}
+    {{/each}}
+  </ul>
+</div>
