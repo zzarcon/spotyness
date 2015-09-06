@@ -63,7 +63,7 @@ var Session = Ember.Object.extend({
     });
   },
 
-  getMe: function() {
+  getMe: function(callback) {
     var request = Em.$.get(`${env.apiHost}/me`);
 
     request.then(function(response) {
@@ -72,7 +72,9 @@ var Session = Ember.Object.extend({
       this.set('user.img', response.images[0].url);
     }.bind(this));
 
-    request.error(this.login.bind(this));
+    request.error(function() {
+      this.login(callback);
+    }.bind(this));
 
     return request;
   },
@@ -89,11 +91,9 @@ var Session = Ember.Object.extend({
 
       this.setToken(token);
 
-      var me = this.getMe();
+      var me = this.getMe(resolve);
 
       me.then(resolve);
-      me.error(resolve);
-      me.fail(resolve);
     }.bind(this));
   },
 
