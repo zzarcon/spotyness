@@ -22,11 +22,12 @@ export default Ember.Route.extend({
   setupController: function(controller, model, transition) {
     var playlistId = transition.params.playlist.playlist_id;
     var tracks = this.get('store').all('track').filterBy('playlistId', playlistId);
+    var sortedTracks = tracks.sortBy('addedAt').reverse();
 
     controller.set('content', model);
-    controller.set('tracks', tracks);
+    controller.set('tracks', sortedTracks);
 
     //Autoplay first track when enter in a playlist
-    this.send('play', tracks.get('lastObject'));
+    this.send('play', sortedTracks.get('firstObject'));
   }
 });
