@@ -11,7 +11,7 @@
         {{#each searchResults as |result|}}
           <li {{action "setCurrentVideo" result}}>
             <img src={{result.img}} alt={{result.name}}>
-            {{result.name}}
+            <div class="result-text">{{result.name}}</div>
           </li>
         {{/each}}
       {{/if}}

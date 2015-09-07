@@ -9,6 +9,8 @@
         <img src="{{playlist.images.firstObject.url}}" alt="{{playlist.name}}">
         {{playlist.name}} ({{playlist.tracks.total}})
       {{/link-to}}
+    {{else}}
+      {{ui-spinner}}
     {{/each}}
   </ul>
 </div>

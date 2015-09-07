@@ -28,17 +28,41 @@
   
   .search-results{
     position: absolute;
-    background-color: white;
-    border: 1px solid;
-    width: 20rem;
+    width: 17rem;
     overflow-x: hidden;
     overflow-y: auto;
-    height: calc(100% - 3rem);
+    max-height: calc(100% - 3rem);
+    top: 27px;
+    left: 5px;
+    z-index: 1;
+    list-style: none;
+    background-color: #282828;
 
     li{
+      @include flexbox;
+      @include align-items(center);
+      transition: all 0.4s;
       cursor: pointer;
+      background-color: $gray;
+      margin-bottom: 3px;
+      margin-right: 3px;
+      height: 60px;
+      overflow: hidden;
+      padding: 5px;
+
       &:hover{
-        background-color: #ccc;
+        background-color: #4d4d4d;
+      }
+
+      img{
+        @include square(40px);
+        margin-right: 5px;
+        border-radius: 100%;
+      }
+      .result-text{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }

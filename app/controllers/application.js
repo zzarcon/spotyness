@@ -62,7 +62,7 @@ export default Ember.Controller.extend({
       var query = this.get('searchQuery');
       if (!query) return;
 
-      this.get('youtube').search(query, 10).then(function(response) {
+      this.get('youtube').search(query, 20).then(function(response) {
         this.set('loadingResults', false);
         this.set('searchResults', response.items.map(function(item) {
           return {
