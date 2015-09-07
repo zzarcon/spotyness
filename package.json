@@ -1,6 +1,6 @@
 {
   "name": "spotyness",
-  "version": "0.0.0",
+  "version": "0.1.1",
   "description": "Small description for spotyness goes here",
   "private": true,
   "directories": {
@@ -10,7 +10,10 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember test"
+    "test": "ember test",
+    "amend": "git add . && git commit --amend --reuse-message=HEAD",
+    "push": "git push --tags && git push",
+    "release": "npm version patch --force --no-git-tag-version && npm run amend && npm run push && npm publish"
   },
   "repository": "",
   "engines": {
