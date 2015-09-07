@@ -17,6 +17,44 @@
       background-color: $gray;
       margin: 5px;
       padding-bottom: 5px;
+      position: relative;
+
+      &:hover{
+        text-decoration: underline;
+
+        .play-playlist{
+          opacity: 1;
+        }
+      }
+      .play-playlist{
+        @include flexbox;
+        @include align-items(center);
+        @include justify-content(center);
+        height: 150px;
+        width: 100%;
+        background-color: rgba(black, 0.5);
+        transition: all 0.3s;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+
+        i{
+          transition: all 0.4s;
+          border: 1px solid transparent;
+          cursor: pointer;
+          border-radius: 100%;
+          padding: 20px;
+          font-size: 30px;
+          width: 75px;
+          background-color: rgba(black, 0.25);
+
+          &:hover{
+            border-color: white;
+            border-color: white;
+          }
+        }
+      }
 
       img{
         width: 150px;

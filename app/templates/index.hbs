@@ -3,9 +3,11 @@
   <ul>
     {{#each musicman.featuredPlaylists as |playlist|}}
       {{#link-to "playlist" playlist.owner.id playlist.id tagName="li"}}
+        <div class="play-playlist">
+          <i class="fa fa-play"></i>
+        </div>
         <img src="{{playlist.images.firstObject.url}}" alt="{{playlist.name}}">
-        {{playlist.name}}
-        {{playlist.tracks.total}}
+        {{playlist.name}} ({{playlist.tracks.total}})
       {{/link-to}}
     {{/each}}
   </ul>
