@@ -5,9 +5,11 @@ export default ApplicationAdapter.extend({
     var playlistId = query.playlist_id;
     var artistId = query.artistId;
 
-    //TODO: Only search into /users/ if is present -> query.user
     if (playlistId) {
-      return `${this.get('host')}/users/${this.get('session.user.id')}/playlists/${playlistId}/tracks`;
+      let userId = query.user_id || this.get('session.user.id');
+      let url = `${this.get('host')}/users/${userId}/playlists/${playlistId}/tracks`;
+      console.log(url)
+      return url;
     }
 
     if (artistId) {

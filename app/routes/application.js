@@ -5,7 +5,9 @@ export default Ember.Route.extend({
 
   beforeModel() {
     if (this.get('session.isLogged')) {
-      return this.get('store').find('playlist');
+      var dependencies = [this.get('store').find('playlist'), this.get('store').find('playlist', {user_id: "spotify"}) ];
+
+      return Ember.RSVP.all(dependencies);
     } else {
       this.transitionTo('login');
     }

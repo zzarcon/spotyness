@@ -11,6 +11,7 @@ export default Ember.Service.extend({
             var request = Ember.$.get(`${env.apiHost}/browse/featured-playlists`);
 
             request.then((data) => {
+              // debugger;
               resolve(data.playlists.items);
             });
           });

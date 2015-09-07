@@ -10,13 +10,25 @@ export default Ember.Route.extend({
   },
 
   beforeModel: function(transition) {
+    let user = transition.queryParams.user;
+
     return this.get('store').find('track', {
-      playlist_id: transition.params.playlist.playlist_id
+      playlist_id: transition.params.playlist.playlist_id,
+      user_id: user
     });
   },
 
-  model: function(params) {
-    return this.get('store').find('playlist', params.playlist_id);
+  model: function(params, transition) {
+    // debugger;
+    console.log('model playlist', params.playlist_id);
+    // return this.get('store').find('playlist', params.playlist_id);
+
+    let user = transition.queryParams.user;
+
+    return this.get('store').find('playlist', {
+      playlist_id: params.playlist_id,
+      user_id: user
+    });
   },
 
   setupController: function(controller, model, transition) {
