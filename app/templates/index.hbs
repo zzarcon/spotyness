@@ -2,7 +2,7 @@
   <h2>Featured playlists</h2>
   <ul>
     {{#each musicman.featuredPlaylists as |playlist|}}
-      {{#link-to "playlist" playlist.id (query-params user=playlist.owner.id) tagName="li"}}
+      {{#link-to "playlist" playlist.owner.id playlist.id tagName="li"}}
         <img src="{{playlist.images.firstObject.url}}" alt="{{playlist.name}}">
         {{playlist.name}}
         {{playlist.tracks.total}}

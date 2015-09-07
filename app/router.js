@@ -7,7 +7,7 @@ var Router = Ember.Router.extend(googlePageview, {
 });
 
 Router.map(function() {
-  this.route('playlist', {path: "playlist/:playlist_id"});
+  this.route('playlist', {path: "playlist/:user_id/:playlist_id"});
   this.route('user');
   this.route('artist', {path: "artist/:artist_id"});
   this.route('login');

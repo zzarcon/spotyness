@@ -4,7 +4,7 @@
       <div class="sidebar-label playlist-label">PLAYLISTS</div>
       <ul class="playlist">
         {{#each myPlaylists as |playlist|}}
-          {{#link-to "playlist" playlist.id tagName="li" class="fa fa-music"}}{{playlist.name}}{{/link-to}}
+          {{#link-to "playlist" playlist.owner.id playlist.id tagName="li" class="fa fa-music"}}{{playlist.name}}{{/link-to}}
         {{/each}}
       </ul>
     </div>

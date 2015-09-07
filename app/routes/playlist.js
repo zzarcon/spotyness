@@ -10,24 +10,18 @@ export default Ember.Route.extend({
   },
 
   beforeModel: function(transition) {
-    let user = transition.queryParams.user;
+    let playlist = transition.params.playlist;
 
     return this.get('store').find('track', {
-      playlist_id: transition.params.playlist.playlist_id,
-      user_id: user
+      playlist_id: playlist.playlist_id,
+      user_id: playlist.user_id
     });
   },
 
   model: function(params, transition) {
-    // debugger;
-    console.log('model playlist', params.playlist_id);
-    // return this.get('store').find('playlist', params.playlist_id);
-
-    let user = transition.queryParams.user;
-
     return this.get('store').find('playlist', {
       playlist_id: params.playlist_id,
-      user_id: user
+      user_id: params.user_id
     });
   },
 
@@ -35,8 +29,9 @@ export default Ember.Route.extend({
     var playlistId = transition.params.playlist.playlist_id;
     var tracks = this.get('store').all('track').filterBy('playlistId', playlistId);
     var sortedTracks = tracks.sortBy('addedAt').reverse();
+    var playlist = this.get('store').getById('playlist', playlistId);
 
-    controller.set('content', model);
+    controller.set('content', playlist);
     controller.set('tracks', sortedTracks);
 
     //Autoplay first track when enter in a playlist

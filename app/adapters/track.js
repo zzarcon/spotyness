@@ -8,7 +8,7 @@ export default ApplicationAdapter.extend({
     if (playlistId) {
       let userId = query.user_id || this.get('session.user.id');
       let url = `${this.get('host')}/users/${userId}/playlists/${playlistId}/tracks`;
-      console.log(url)
+
       return url;
     }
 
