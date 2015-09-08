@@ -6,11 +6,25 @@
         <div class="play-playlist">
           <i class="fa fa-play"></i>
         </div>
-        <img src="{{playlist.images.firstObject.url}}" alt="{{playlist.name}}">
+        <div class="item-bg" style="background-image: url({{playlist.images.firstObject.url}})" alt="{{playlist.name}}"></div>
         {{playlist.name}} ({{playlist.tracks.total}})
       {{/link-to}}
     {{else}}
       {{ui-spinner}}
     {{/each}}
   </ul>
+    <h2>Following artists</h2>
+    <ul>
+      {{#each musicman.followingArtists as |artist|}}
+        {{#link-to "artist" artist.id tagName="li"}}
+          <div class="play-playlist">
+            <i class="fa fa-play"></i>
+          </div>
+          <div class="item-bg" style="background-image: url({{artist.images.firstObject.url}})" alt="{{artist.name}}"></div>
+          {{artist.name}}
+        {{/link-to}}
+      {{else}}
+        {{ui-spinner}}
+      {{/each}}
+    </ul>
 </div>

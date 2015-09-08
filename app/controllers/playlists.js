@@ -5,5 +5,6 @@ export default Ember.ArrayController.extend({
     return this.get('store').all('playlist');
   }.property(),
 
-  mine: Ember.computed.filterBy('model', 'isMine')
+  mine: Ember.computed.filterBy('model', 'isMine'),
+  notMine: Ember.computed.filterBy('model', 'isMine', false)
 });

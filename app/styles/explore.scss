@@ -56,8 +56,11 @@
         }
       }
 
-      img{
-        width: 150px;
+      .item-bg{
+        @include square(150px);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
         display: block;
         margin-bottom: 5px;
       }

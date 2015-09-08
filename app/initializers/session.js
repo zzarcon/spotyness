@@ -18,10 +18,9 @@ var Session = Ember.Object.extend({
   isLoggedInSpotify: Ember.computed.bool('user.id'),
   isLoggedInYoutube: false,
   storageKey: 'spotify-token',
-  scopes: ['user-read-email', 'playlist-read-private', 'playlist-read-collaborative', 'user-follow-read', 'user-library-read'],
 
   login: function(callback) {
-    var url = getLoginURL(this.get('scopes'));
+    var url = getLoginURL(env.spotyScopes);
     var width = 450;
     var height = 730;
     var left = (screen.width / 2) - (width / 2);
@@ -120,7 +119,7 @@ function onGoogleApiLoad(session) {
   return new Ember.RSVP.Promise(function(resolve) {
     gapi.load('auth2', function() {
       gapi.client.load('youtube', 'v3').then(function() {
-        gapi.auth2.init({fetch_basic_profile: false, scope: env.scopes}).then(function() {
+        gapi.auth2.init({fetch_basic_profile: false, scope: env.GoogleScopes}).then(function() {
           session.set('googleAuth', gapi.auth2.getAuthInstance());
           resolve();
         });
@@ -145,6 +144,7 @@ export function initialize(container, app) {
   app.inject('view', 'session', 'session:main');
   app.inject('model', 'session', 'session:main');
   app.inject('adapter', 'session', 'session:main');
+  app.inject('serializer', 'session', 'session:main');
 }
 
 export default {

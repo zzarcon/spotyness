@@ -3,8 +3,9 @@
 module.exports = function(environment) {
   var ENV = {
     apiKey: 'AIzaSyC74lOQXYUVEZNkVkdh_XThJmV0pQbiwVw',
-    scopes: 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/youtube',
+    GoogleScopes: 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/youtube',
     clientId: '8678c3aa274246d0a4fd5f7d213dc866',
+    spotyScopes: ['user-read-email', 'playlist-read-private', 'playlist-read-collaborative', 'user-follow-read', 'user-library-read'],
     redirectUri: '/callback.html',
     apiHost: 'https://api.spotify.com/v1',
     modulePrefix: 'spotyness',

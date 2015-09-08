@@ -7,6 +7,7 @@ export default Ember.Controller.extend({
   videoPlayer: null,
   activePlaylist: Ember.computed.alias('controllers.playlist'),
   myPlaylists: Ember.computed.alias('controllers.playlists.mine'),
+  notMyPlaylists: Ember.computed.alias('controllers.playlists.mine'),
   existPlayer: Ember.computed.bool('currentVideo.id'),
   searchQuery: "",
   searchQueryDelay: null,

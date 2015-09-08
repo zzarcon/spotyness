@@ -12,6 +12,7 @@ export default DS.Model.extend({
   owner: attr(),
   collaborative: attr('boolean'),
   public: attr('boolean'),
+  isMine: attr('boolean'),
   href: attr('string'),
   items: attr(),
   tracks: attr(),
@@ -19,7 +20,7 @@ export default DS.Model.extend({
   totalTracks: Ember.computed.alias('tracks.total'),
   hasNextPage: Ember.computed.lt('totalTracks', 100),
 
-  isMine: function() {
+  _isMine: function() {
     return this.get('owner.id') === this.get('session.user.id');
   }.property('owner.id', 'session.user.id')
 });
