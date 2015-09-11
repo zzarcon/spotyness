@@ -14,6 +14,7 @@
         {{#if view.isBigPlayerActive}}<i class="fa fa-chevron-down"></i>{{else}}<i class="fa fa-chevron-up"></i>{{/if}}
       </div>
       {{#if existPlayer}}
+        <button {{action "downloadSong"}}>Download song</button>
         {{ember-youtube ytid=currentVideo.id autoplay=true showControls=false showTime=false showProgress=false delegate=controller delegate-as="videoPlayer" ended="onEnd"}}
       {{/if}}
       <div class="current-track-info marquee">

@@ -34,5 +34,17 @@ export default Ember.Service.extend({
         }
      });
     }
-  })
+  }),
+
+  downloadSong(videoId) {
+    var url = `http://localhost:3000/fetch_song/${videoId}`;
+
+    return Ember.$.get(url);
+  },
+
+  getSongStatus(videoId) {
+    var url = `http://localhost:3000/song_status/${videoId}`;
+
+    return Ember.$.get(url); 
+  }
 });
