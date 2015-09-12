@@ -28,7 +28,7 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
-
+    ENV.mp3trifyHost = 'http://localhost:3000';
   }
 
   if (environment === 'test') {
@@ -44,6 +44,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.mp3trifyHost = 'http://localhost:3000';
     ENV.googleAnalytics = {
       webPropertyId: 'UA-67282817-1'
     };

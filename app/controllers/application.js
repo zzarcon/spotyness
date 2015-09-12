@@ -14,6 +14,7 @@ export default Ember.Controller.extend({
   searchQueryDelay: null,
   searchResults: [],
   loadingResults: false,
+  isDownloadingSong: false,
 
   play(track) {
     var query = track.getWithDefault('artists.firstObject.name', '') + ' ' + track.get('name');
@@ -77,6 +78,25 @@ export default Ember.Controller.extend({
     }, 1000));
   }),
 
+  getStatus(videoId) {
+    var musicman = this.get('musicman');
+
+    function getStatus(resolve) {
+      musicman.getSongStatus(videoId).then((response) => {
+        if (response.status === 'serving') {
+          resolve(response);
+          return;
+        }
+
+        getStatus();
+      });
+    }
+
+    return new Ember.RSVP.Promise((resolve) => {
+      getStatus(resolve);
+    }, this);
+  },
+
   actions: {
     login() {
       this.get('session').login();
@@ -114,8 +134,14 @@ export default Ember.Controller.extend({
       this.set('isDownloadingSong', true);
 
       musicman.downloadSong(videoId).then(() => {
-        musicman.getSongStatus(videoId).then((response) => {
-          console.log(response);
+        this.getStatus(videoId).then((data) => {
+          this.set('isDownloadingSong', false);
+
+          var downloadFrame = document.createElement("iframe"); 
+          downloadFrame.setAttribute('src', data.song_src);
+          downloadFrame.setAttribute('class', "dowloader-iframe"); 
+
+          document.body.appendChild(downloadFrame); 
         });
       });
     }
