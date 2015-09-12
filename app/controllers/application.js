@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   needs: ['playlists', 'playlist'],
+  musicman: Ember.inject.service(),
   currentTrack: null,
   currentVideo: null,
   videoPlayer: null,
@@ -13,8 +14,9 @@ export default Ember.Controller.extend({
   searchQueryDelay: null,
   searchResults: [],
   loadingResults: false,
+  isDownloadingSong: false,
 
-  play: function(track) {
+  play(track) {
     var query = track.getWithDefault('artists.firstObject.name', '') + ' ' + track.get('name');
     var currentTrack = this.get('currentTrack');
 
@@ -39,7 +41,7 @@ export default Ember.Controller.extend({
   },
 
   videoPercentage: Ember.computed('videoPlayer.currentTimeValue', 'videoPlayer.durationValue', {
-    get: function() {
+    get() {
       if (!this.get('videoPlayer.currentTimeValue')) return 0;
 
       return parseInt((this.get('videoPlayer.currentTimeValue') * 100) / this.get('videoPlayer.durationValue'), 10);
@@ -76,34 +78,72 @@ export default Ember.Controller.extend({
     }, 1000));
   }),
 
+  getStatus(videoId) {
+    var musicman = this.get('musicman');
+
+    function getStatus(resolve) {
+      musicman.getSongStatus(videoId).then((response) => {
+        if (response.status === 'serving') {
+          resolve(response);
+          return;
+        }
+
+        getStatus();
+      });
+    }
+
+    return new Ember.RSVP.Promise((resolve) => {
+      getStatus(resolve);
+    }, this);
+  },
+
   actions: {
-    login: function() {
+    login() {
       this.get('session').login();
     },
 
-    onEnd: function() {
+    onEnd() {
       this.get('activePlaylist').send('navigate', 'next');
     },
 
-    seekTo: function() {
+    seekTo() {
       var el = document.getElementById("video-slider");
       this.get('videoPlayer').send('seekTo', el.value);
     },
 
-    changeVolume: function() {
+    changeVolume() {
       var el = document.getElementById("video-volume");
       this.get('videoPlayer.player').setVolume(el.value);
     },
 
-    setCurrentVideo: function(video) {
+    setCurrentVideo(video) {
       this.set('currentVideo', video);
     },
 
-    enterFullscreen: function() {
+    enterFullscreen() {
       var iframe = this.get('videoPlayer.player').getIframe();
       var requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
 
       requestFullScreen.bind(iframe)();
+    },
+
+    downloadSong() {
+      var videoId = this.get('currentVideo.id');
+      var musicman = this.get('musicman');
+
+      this.set('isDownloadingSong', true);
+
+      musicman.downloadSong(videoId).then(() => {
+        this.getStatus(videoId).then((data) => {
+          this.set('isDownloadingSong', false);
+
+          var downloadFrame = document.createElement("iframe"); 
+          downloadFrame.setAttribute('src', data.song_src);
+          downloadFrame.setAttribute('class', "dowloader-iframe"); 
+
+          document.body.appendChild(downloadFrame); 
+        });
+      });
     }
   }
 });

@@ -65,6 +65,7 @@
     }
     .current-video{
       position: relative;
+      border-top: 1px solid black;
 
       &:hover{
         .videoplayer-action{
@@ -92,6 +93,19 @@
       &.exist-player{
         button {
           display: block;
+          width: 166px;
+          padding: 6px 0;
+          border-radius: 8px;
+          border: none;
+          background-color: white;
+          margin: 10px;
+          cursor: pointer;
+          outline: none;
+          
+          &[disabled]{
+            cursor: default;
+            opacity: 0.7;
+          }
         }
       }
       .current-track-info{
@@ -122,7 +136,7 @@
         bottom: 5px;
       }
       .toggle-player-size{
-        top: 5px;
+        top: 50px;
       }
       button{
         display: none;
