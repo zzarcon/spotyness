@@ -44,7 +44,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.mp3trifyHost = 'http://localhost:3000';
+    ENV.mp3trifyHost = 'http://mp3trify.herokuapp.com';
     ENV.googleAnalytics = {
       webPropertyId: 'UA-67282817-1'
     };
