@@ -66,6 +66,14 @@
       }
     }
   }
+  .contribute-gh{
+    i{
+      font-size: 20px;
+    }
+    &:hover{
+      text-decoration: underline;
+    }
+  }
   .me{
     @include flexbox;
     @include justify-content(center);
