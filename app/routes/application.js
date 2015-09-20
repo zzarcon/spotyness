@@ -5,7 +5,7 @@ export default Ember.Route.extend({
 
   beforeModel() {
     if (this.get('session.isLogged')) {
-      var dependencies = [this.get('store').find('playlist'), this.get('store').find('playlist', {user_id: "spotify"}) ];
+      var dependencies = [this.store.findAll('playlist'), this.store.query('playlist', {user_id: "spotify"}) ];
 
       return Ember.RSVP.all(dependencies);
     } else {

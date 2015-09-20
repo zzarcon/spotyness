@@ -1,9 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  needs: ['application'],
   tracks: [],
-  app: Ember.computed.alias('controllers.application'),
+  app: Ember.inject.controller('application'),
   isFirstTrackActive: Ember.computed.equal('currentTrackIndex', 0),
 
   isLastTrackActive: Ember.computed('currentTrackIndex', {

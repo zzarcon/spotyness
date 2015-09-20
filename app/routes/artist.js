@@ -9,6 +9,6 @@ export default Ember.Route.extend({
     return tokens.join('');
   },
   model: function(params) {
-    return this.get('store').find('artist', params.artist_id);
+    return this.store.find('artist', params.artist_id);
   }
 });
