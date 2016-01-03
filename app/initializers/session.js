@@ -14,6 +14,7 @@ var Session = Ember.Object.extend({
   token: null,
   googleAuth: null,
   hasUser: Ember.computed.bool('user'),
+  isReady: false,
   isLogged: Ember.computed.and('isLoggedInSpotify', 'isLoggedInYoutube'),
   isLoggedInSpotify: Ember.computed.bool('user.id'),
   isLoggedInYoutube: false,
@@ -108,10 +109,12 @@ var Session = Ember.Object.extend({
     this.set('isLoggedInYoutube', isSignedIn);
   },
 
-  start(youtube) {
+  start() {
     var dependencies = [this.setPreviousToken(), onGoogleApiLoad(this)];
 
-    return Ember.RSVP.all(dependencies);
+    return Ember.RSVP.all(dependencies).then(() => {
+      this.set('isReady', true);
+    });
   }
 });
 
@@ -133,10 +136,6 @@ window.onGoogleApiLoad = onGoogleApiLoad;
 
 export function initialize(container, app) {
   app.register('session:main', Session, {singleton: true});
-  var session = container.lookup('session:main');
-
-  app.deferReadiness();
-  session.start().then(app.advanceReadiness.bind(app));
 
   app.inject('controller', 'session', 'session:main');
   app.inject('route', 'session', 'session:main');

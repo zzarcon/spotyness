@@ -1,6 +1,5 @@
-export function initialize(instance) {
-  // var session = instance.container.lookup('session:main');  
-  // session.setPreviousToken();
+export function initialize(appInstance) {
+
 }
 
 export default {

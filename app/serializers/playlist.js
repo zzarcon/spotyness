@@ -1,8 +1,8 @@
 import DS from 'ember-data';
 
 export default DS.RESTSerializer.extend({
-  extractArray: function(store, type, payload) {
-    let areMine = payload.href.indexOf(this.get('session.user.href')) !== -1;
+  normalizeArrayResponse: function(store, primaryModelClass, payload, id, requestType) {
+    let areMine = payload.href.indexOf(this.session.get('user.href')) !== -1;
     let playlists = payload.items || [payload];
 
     if (areMine) {
@@ -13,6 +13,6 @@ export default DS.RESTSerializer.extend({
       playlists: playlists
     };
 
-    return this._super(store, type, payload);
+    return this._super(store, primaryModelClass, payload, id, requestType);
   }
 });

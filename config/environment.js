@@ -24,6 +24,10 @@ module.exports = function(environment) {
       'script-src': "* 'self' 'unsafe-inline' 'unsafe-eval'",
       'font-src': "* 'self' 'unsafe-inline' 'unsafe-eval'",
       'default-src': "* 'self' 'unsafe-inline' 'unsafe-eval'"
+    },
+    'ember-devtools': {
+      global: 'Backdoor',
+      enabled: true
     }
   };
 
