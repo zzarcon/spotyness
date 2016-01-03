@@ -78,17 +78,17 @@ export default Ember.Controller.extend({
     }, 1000));
   }),
 
-  getStatus(videoId) {
+  getStatus(pid) {
     var musicman = this.get('musicman');
 
     function getStatus(resolve) {
-      musicman.getSongStatus(videoId).then((response) => {
+      musicman.getSongStatus(pid).then((response) => {
         if (response.status === 'serving') {
           resolve(response);
           return;
         }
 
-        getStatus();
+        Ember.run.later(getStatus, 2000);
       });
     }
 
@@ -133,8 +133,10 @@ export default Ember.Controller.extend({
 
       this.set('isDownloadingSong', true);
 
-      musicman.downloadSong(videoId).then(() => {
-        this.getStatus(videoId).then((data) => {
+      musicman.downloadSong(videoId).then((response) => {
+        let pid = response.pid;
+
+        this.getStatus(pid).then((data) => {
           this.set('isDownloadingSong', false);
 
           var downloadFrame = document.createElement("iframe"); 
