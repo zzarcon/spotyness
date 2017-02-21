@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
     }
 
     //HACK: Force fetch of playlist
-    this.get('store').find('playlist');
+    this.store.find('playlist');
     this.transitionToRoute('application');
   }.observes('session.isLogged'),
 

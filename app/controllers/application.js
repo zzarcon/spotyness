@@ -1,14 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  needs: ['playlists', 'playlist'],
   musicman: Ember.inject.service(),
   currentTrack: null,
   currentVideo: null,
   videoPlayer: null,
-  activePlaylist: Ember.computed.alias('controllers.playlist'),
-  myPlaylists: Ember.computed.alias('controllers.playlists.mine'),
-  notMyPlaylists: Ember.computed.alias('controllers.playlists.mine'),
+  activePlaylist: Ember.inject.controller('playlist'),
+  myPlaylists: Ember.inject.controller('playlists'),
   existPlayer: Ember.computed.bool('currentVideo.id'),
   searchQuery: "",
   searchQueryDelay: null,
@@ -139,11 +137,11 @@ export default Ember.Controller.extend({
         this.getStatus(pid).then((data) => {
           this.set('isDownloadingSong', false);
 
-          var downloadFrame = document.createElement("iframe"); 
+          var downloadFrame = document.createElement("iframe");
           downloadFrame.setAttribute('src', data.song_src);
-          downloadFrame.setAttribute('class', "dowloader-iframe"); 
+          downloadFrame.setAttribute('class', "dowloader-iframe");
 
-          document.body.appendChild(downloadFrame); 
+          document.body.appendChild(downloadFrame);
         });
       });
     }

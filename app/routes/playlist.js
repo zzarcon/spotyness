@@ -12,14 +12,14 @@ export default Ember.Route.extend({
   beforeModel: function(transition) {
     let playlist = transition.params.playlist;
 
-    return this.get('store').find('track', {
+    return this.store.find('track', {
       playlist_id: playlist.playlist_id,
       user_id: playlist.user_id
     });
   },
 
   model: function(params, transition) {
-    return this.get('store').find('playlist', {
+    return this.store.find('playlist', {
       playlist_id: params.playlist_id,
       user_id: params.user_id
     });
@@ -27,9 +27,9 @@ export default Ember.Route.extend({
 
   setupController: function(controller, model, transition) {
     var playlistId = transition.params.playlist.playlist_id;
-    var tracks = this.get('store').all('track').filterBy('playlistId', playlistId);
+    var tracks = this.store.peekAll('track').filterBy('playlistId', playlistId);
     var sortedTracks = tracks.sortBy('addedAt').reverse();
-    var playlist = this.get('store').getById('playlist', playlistId);
+    var playlist = this.store.getById('playlist', playlistId);
 
     controller.set('content', playlist);
     controller.set('tracks', sortedTracks);

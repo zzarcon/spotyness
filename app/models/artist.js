@@ -17,7 +17,7 @@ export default DS.Model.extend({
 
   topTracks: Ember.computed({
     get() {
-      return this.get('store').find('track', {artistId: this.get('id')});
+      return this.store.find('track', {artistId: this.get('id')});
     }
   })
 });
